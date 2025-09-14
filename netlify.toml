@@ -1,0 +1,26 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    Content-Security-Policy = "upgrade-insecure-requests"
+
+[[redirects]]
+  from = "http://wovi.net/*"
+  to = "https://wovi.net/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.wovi.net/*"
+  to = "https://wovi.net/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.wovi.net/*"
+  to = "https://wovi.net/:splat"
+  status = 301
+  force = true

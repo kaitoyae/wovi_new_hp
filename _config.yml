@@ -1,0 +1,6 @@
+# GitHub Pages Configuration
+enforce_ssl: wovi.net
+
+# Force HTTPS
+plugins:
+  - jekyll-redirect-from
