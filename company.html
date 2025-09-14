@@ -141,16 +141,40 @@
 
         <!-- メインコンテンツ -->
         <main class="flex-grow">
-            <!-- ヒーローセクション -->
-            <section class="hero-section">
-                <div class="max-w-4xl text-center flex flex-col items-center">
-                    <div class="hero-text-bg">
-                        <h3 class="text-sm font-semibold tracking-widest text-gray-500 uppercase mb-6">Mission</h3>
-                        <h2 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight">
-                            「違い」を、<br>壁から
-                            <span class="text-green">創造の力</span>へと変える。
-                        </h2>
+            <!-- ミッションセクション（改良） -->
+            <section id="mission" class="relative overflow-hidden py-24 md:py-36">
+                <!-- 背景アクセント -->
+                <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+                    <div class="absolute -top-24 -left-24 w-[36rem] h-[36rem] rounded-full blur-3xl opacity-30"
+                         style="background: radial-gradient(closest-side, rgba(0,169,164,0.35), rgba(0,169,164,0) 70%);"></div>
+                    <div class="absolute -bottom-20 -right-32 w-[42rem] h-[42rem] rounded-full blur-3xl opacity-20"
+                         style="background: radial-gradient(closest-side, rgba(255,209,102,0.35), rgba(255,209,102,0) 70%);"></div>
+                    <!-- ウォーターマーク（創）: 全ブレイクポイントで薄く表示 -->
+                    <div class="absolute select-none"
+                         style="left: -0.5rem; top: clamp(4rem, 10vw, 7rem); font-weight: 900; font-size: clamp(8rem, 38vw, 22rem); line-height: 1; color: rgba(0,0,0,0.035);">創</div>
+                </div>
+
+                <div class="relative max-w-6xl mx-auto px-6">
+                    <!-- セクション見出し（会社概要と同スタイル） -->
+                    <div class="text-center mb-16">
+                        <h1 class="text-[2.125rem] md:text-5xl font-semibold font-jp">ミッション</h1>
+                        <p class="mt-4 text-lg text-gray-600 font-jp">Mission</p>
                     </div>
+
+                    <!-- 見出し -->
+                    <h1 class="font-heading font-bold tracking-tight leading-tight text-[2.125rem] sm:text-5xl md:text-6xl lg:text-7xl">
+                        <span class="inline">「違い」を、</span><br>
+                        <span class="inline">壁から</span>
+                        <span class="inline"><span class="font-extrabold" style="color: var(--wovi-green);">創造の力</span>へと変える。</span>
+                    </h1>
+
+                    <!-- 補足テキスト -->
+                    <p class="mt-8 max-w-3xl text-base md:text-lg text-gray-600 leading-relaxed">
+                        多様性がもたらす共創の可能性を信じ、<br>テクノロジーとデザインの力で新しい価値を創造します。
+                    </p>
+
+                    <!-- デコレーションの仕切り線 -->
+                    <div class="mt-10 h-px w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
                 </div>
             </section>
 
@@ -174,7 +198,7 @@
                             <p>でも、テクノロジーとデザインの力で人と人をつなげれば、<br>
                             「違う」者たちの出会いは、<br>
                             ただの足し算ではなく、<span class="font-bold" style="background: linear-gradient(transparent 60%, var(--spark-yellow) 60%);">無限に広がる共創</span>へと変わる。<br>
-                            私たちはその可能性を信じています。。</p>
+                            私たちはその可能性を信じています。</p>
 
                             <p>そして、その一歩が、トモタビ。<br>
                             語られざるローカル知を地図に刻み、旅する人と地域の人の出会いを紡ぐことで、<br>

@@ -2,7 +2,7 @@
 function createHeader() {
     return `
         <!-- ヘッダー -->
-        <header class="p-3 md:p-4 fixed top-0 left-0 w-full z-10 bg-white shadow-sm">
+        <header class="p-3 md:p-4 fixed top-0 left-0 w-full z-50 bg-white shadow-sm">
             <nav class="flex items-center justify-between">
                 <!-- ロゴ -->
                 <div class="flex items-center">
