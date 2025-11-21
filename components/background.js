@@ -32,6 +32,13 @@
         const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
         renderer.setPixelRatio(Math.min(global.devicePixelRatio || 1, 2));
         renderer.setSize(window.innerWidth, window.innerHeight);
+        if (renderer.outputEncoding !== undefined) {
+            renderer.outputEncoding = THREE.sRGBEncoding;
+        }
+        if (renderer.toneMapping !== undefined && renderer.toneMappingExposure !== undefined) {
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.15;
+        }
 
         let animationId = null;
         let scrollY = 0;
@@ -50,7 +57,8 @@
         window.addEventListener('resize', onResize);
         window.addEventListener('scroll', onScroll, scrollOptions);
 
-        const palette = (options.colors || DEFAULT_COLORS).map(c => new THREE.Color(c));
+        const palette = (options.colors || DEFAULT_COLORS)
+            .map(c => enhanceColorIntensity(new THREE.Color(c)));
         const lineCount = options.lineCount || 45;
         const segments = options.segments || 80;
         const bounds = options.bounds || 7;
@@ -111,12 +119,13 @@
                 this.geometry.setAttribute('position', new THREE.BufferAttribute(this.positions, 3));
                 this.geometry.setAttribute('color', new THREE.BufferAttribute(this.colors, 3));
                 this.material = new THREE.LineBasicMaterial({
-                    transparent: true,
-                    opacity: 0.85,
-                    blending: THREE.AdditiveBlending,
+                    transparent: false,
+                    opacity: 1,
+                    blending: THREE.NormalBlending,
                     depthWrite: false,
                     vertexColors: true,
-                    linewidth: 3
+                    linewidth: 3,
+                    fog: false
                 });
 
                 this.line = new THREE.Line(this.geometry, this.material);
@@ -193,6 +202,19 @@
             }
         }
 
+        function enhanceColorIntensity(color) {
+            const hsl = {};
+            color.getHSL(hsl);
+            const saturated = Math.min(1, hsl.s * 1.35 + 0.2);
+            const contrastedLightness = THREE.MathUtils.clamp((hsl.l - 0.5) * 0.8 + 0.45, 0.25, 0.72);
+            color.setHSL(hsl.h, saturated, contrastedLightness);
+            color.multiplyScalar(1.1);
+            color.r = THREE.MathUtils.clamp(color.r, 0, 1);
+            color.g = THREE.MathUtils.clamp(color.g, 0, 1);
+            color.b = THREE.MathUtils.clamp(color.b, 0, 1);
+            return color;
+        }
+
         function pickColor(palette) {
             const c = palette[Math.floor(Math.random() * palette.length)];
             return c instanceof THREE.Color ? c.clone() : new THREE.Color(c);
@@ -203,6 +225,18 @@
             const start = randomPointInSphere(bounds * 0.6);
             start.y -= 1.5;
             flowLines.push(new FlowLine(start));
+        }
+
+        // Warm up the simulation so the screen is lively almost immediately.
+        const prewarmDuration = Math.max(0.1, options.prewarmDuration || 0.2);
+        const prewarmStep = 1 / 60;
+        const prewarmSteps = Math.max(1, Math.floor(prewarmDuration / prewarmStep));
+        const baseTime = ((global.performance && global.performance.now()) || Date.now()) / 1000 - prewarmDuration;
+        for (let step = 0; step < prewarmSteps; step++) {
+            const simTime = baseTime + step * prewarmStep;
+            for (let i = 0; i < flowLines.length; i++) {
+                flowLines[i].step(simTime);
+            }
         }
 
         const dustCount = 300;
