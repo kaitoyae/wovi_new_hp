@@ -1,10 +1,10 @@
-(function(global) {
+(function (global) {
     const navLinks = (global.WOVI_NAV && typeof global.WOVI_NAV.getNavLinks === 'function')
         ? global.WOVI_NAV.getNavLinks()
         : [];
 
     function renderFooterLinks() {
-        return navLinks.map(link => 
+        return navLinks.map(link =>
             `<li><a href="${link.href}" class="text-gray-300 hover:text-white transition-colors">${link.label}</a></li>`
         ).join('\n                            ');
     }
@@ -17,7 +17,7 @@
                     <div class="grid md:grid-cols-4 gap-8 mb-12">
                         <!-- ロゴとビジョン -->
                         <div class="md:col-span-2">
-                            <img src="images/logowhitetext.png" alt="Wovi Logo" class="h-16 w-auto mb-4">
+                            <img src="/images/logowhitetext.png" alt="Wovi Logo" class="h-16 w-auto mb-4">
                             <p class="text-sm text-gray-300 leading-relaxed">
                                 株式会社Wovi<br>
                                 Progress Without Exclusion. 
@@ -50,7 +50,7 @@
                             &copy; 2025 Wovi. All Rights Reserved.
                         </div>
                         <div class="flex space-x-6 text-sm">
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors">プライバシーポリシー</a>
+                            <a href="/policy" class="text-gray-400 hover:text-white transition-colors">プライバシーポリシー</a>
                             <a href="#" class="text-gray-400 hover:text-white transition-colors">利用規約</a>
                         </div>
                     </div>

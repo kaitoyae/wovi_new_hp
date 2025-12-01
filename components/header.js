@@ -1,4 +1,4 @@
-(function(global) {
+(function (global) {
     const navLinks = (global.WOVI_NAV && typeof global.WOVI_NAV.getNavLinks === 'function')
         ? global.WOVI_NAV.getNavLinks()
         : [];
@@ -27,8 +27,8 @@
                 <nav class="flex items-center justify-between">
                     <!-- ロゴ -->
                     <div class="flex items-center">
-                        <a href="index.html">
-                            <img src="images/logo.png" alt="Wovi Logo" class="h-14 md:h-16 w-auto">
+                        <a href="/index.html">
+                            <img src="/images/logo.png" alt="Wovi Logo" class="h-14 md:h-16 w-auto">
                         </a>
                     </div>
                     
@@ -61,7 +61,7 @@
     function initializeHeaderEvents() {
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        
+
         if (mobileMenuButton && mobileMenu) {
             function setMenuState(isOpen) {
                 if (isOpen) {
@@ -72,24 +72,24 @@
                 mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
             }
 
-            mobileMenuButton.addEventListener('click', function() {
+            mobileMenuButton.addEventListener('click', function () {
                 const willOpen = mobileMenu.classList.contains('hidden');
                 setMenuState(willOpen);
             });
 
             document.querySelectorAll('#mobile-menu a').forEach(link => {
-                link.addEventListener('click', function() {
+                link.addEventListener('click', function () {
                     setMenuState(false);
                 });
             });
 
-            document.addEventListener('click', function(event) {
+            document.addEventListener('click', function (event) {
                 if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
                     setMenuState(false);
                 }
             });
 
-            document.addEventListener('keydown', function(event) {
+            document.addEventListener('keydown', function (event) {
                 if (event.key === 'Escape') {
                     setMenuState(false);
                 }

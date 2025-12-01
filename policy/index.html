@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライバシーポリシー | 株式会社Wovi</title>
+    <link rel="icon" type="image/png" href="/images/logowhite.png">
+    <meta property="og:image" content="https://wovi.net/images/logowhite.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:title" content="プライバシーポリシー | Wovi">
+    <meta property="og:description" content="株式会社Woviのプライバシーポリシーです。">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="https://wovi.net/images/logowhite.png">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="/components/navigation.js"></script>
+    <script src="/components/background.js"></script>
+    <script src="/components/header.js"></script>
+    <script src="/components/footer.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/styles/global.css">
+</head>
+
+<body>
+    <canvas id="three-canvas" aria-hidden="true"></canvas>
+
+    <div class="content-wrapper min-h-screen flex flex-col">
+        <!-- ヘッダー -->
+        <div id="header-placeholder"></div>
+
+        <!-- メインコンテンツ -->
+        <main class="flex-grow pt-32 pb-20">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h1 class="text-3xl md:text-4xl font-bold font-jp mb-12 text-center">プライバシーポリシー</h1>
+
+                <div
+                    class="prose prose-lg max-w-none font-jp bg-white/80 backdrop-blur-md p-8 md:p-12 rounded-2xl shadow-sm">
+                    <p>株式会社Wovi（以下「当社」といいます。）は、製品・サービスの提供、イベントの実施その他事業活動の実施に当たって取得する個人情報について、以下に記載するポリシーに基づいて適正に取り扱います。本ポリシーにおける「個人情報」、「個人データ」および「保有個人データ」は、本ポリシーに別段の定めがない限り、個人情報の保護に関する法律（平成15年法律第57号。以下「個人情報保護法」といいます。）において使用する用語の例によります。
+                    </p>
+
+                    <h2 class="text-xl font-bold mt-8 mb-4">１.　取得する情報</h2>
+                    <p>当社は、事業活動の実施に当たって、以下に記載するものを含む個人情報を取得します。</p>
+                    <p>氏名、住所、勤務先、勤務部署、役職、電話・FAX番号、電子メールアドレス、銀行口座情報、クレジットカード番号、顔写真、動画、株主番号、製品・サービスの契約者情報等</p>
+                    <p class="text-sm text-gray-600 mt-2">※
+                        個人事業主、講演者等の個人の場合、支払調書作成事務および源泉徴収票作成事務に利用するため、マイナンバーを取得させていただくことがあります。</p>
+
+                    <h2 class="text-xl font-bold mt-8 mb-4">２.　利用目的</h2>
+                    <p>当社は、取得した個人情報を以下に記載する目的の達成に必要な範囲で利用します。以下に記載する目的の達成に必要な範囲を超えて個人情報を取り扱う場合には、別途本人の同意を得た上で行います。</p>
+
+                    <h3 class="text-lg font-bold mt-6 mb-3">
+                        （１）製品・サービスをご購入もしくはご利用いただいた方または製品・サービスにご関心をお持ちいただいた方（以下「お客様」といいます。）の個人情報の利用目的</h3>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>製品・サービスに関する各種情報（新製品・サービス、新機能、機能改善、導入事例等）のご案内のため</li>
+                        <li>セミナー・イベントのご案内およびその運営のため</li>
+                        <li>製品・サービスに関する契約のお申込み、契約者情報等の変更、契約更新および解約のご案内その他お客様との取引情報の管理のため</li>
+                        <li>製品・サービスの代金または利用料金のお見積りおよびご請求のため</li>
+                        <li>製品・サービスの購入に対するお礼状発送のため</li>
+                        <li>製品・サービスに関するアンケ―ト実施のご案内ならびに当選のご連絡および景品等の発送のため</li>
+                        <li>製品・サービスのメンテナンス、障害等に関する情報のご案内のため</li>
+                        <li>カスタマーサポートの実施およびお問合せに対する回答のため</li>
+                        <li>認定資格制度、ユーザーコミュニティおよびデベロッパーコミュニティの運営のため</li>
+                        <li>製品・サービスをより充実した価値あるものにするための基礎データとするため</li>
+                        <li>マーケティング施策およびカスタマーサポート施策の効果測定のため</li>
+                    </ul>
+                    <p class="mt-2">
+                        なお、上記目的のために、お問い合わせ履歴、製品・サービスの購買履歴、セミナー・イベントの参加履歴その他の情報をお客様の個人情報とともに分析し、お客様の興味・関心・傾向等を推定する場合があります。
+                    </p>
+
+                    <h3 class="text-lg font-bold mt-6 mb-3">（２）当社のお取引先（パートナー様を含みます。）のご担当者様の個人情報の利用目的</h3>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>お取引先情報の管理のため</li>
+                        <li>契約締結事務および取引の実施に必要なご連絡のため</li>
+                        <li>請求・支払業務のため</li>
+                    </ul>
+
+                    <h3 class="text-lg font-bold mt-6 mb-3">
+                        （３）当社製品・サービスの脆弱性または当社の情報セキュリティ・インシデントをご報告いただいた方（以下「報告者」といいます。）の個人情報の利用目的</h3>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>報告者へのご連絡のため</li>
+                        <li>報告者が脆弱性報奨金制度にご参加の場合、報奨金のお支払いその他当該制度の運営のため</li>
+                        <li>報告者が脆弱性検証環境プログラムにご参加の場合、脆弱性検証環境の提供その他当該プログラムの運営のため</li>
+                    </ul>
+
+                    <h3 class="text-lg font-bold mt-6 mb-3">（４）当社の株主の方または株主になることにご関心をお持ちいただいた方の個人情報の利用目的</h3>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>会社法に基づく権利の行使・義務の履行のため</li>
+                        <li>各種のIR（Investor Relations）施策を実施するため</li>
+                        <li>各種法令に基づく所定の基準による株主のデータを作成する等、株主管理のため</li>
+                    </ul>
+
+                    <h3 class="text-lg font-bold mt-6 mb-3">（５）メディア関係者様その他上記（１）から（４）に含まれない個人の方の個人情報の利用目的</h3>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>本人へのご連絡のため</li>
+                        <li>セミナー・イベントのご案内およびその運営のため</li>
+                    </ul>
+
+                    <h3 class="text-lg font-bold mt-6 mb-3">（６）（１）～（５）共通の個人情報の利用目的</h3>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>法令遵守のため</li>
+                        <li>当社の法的権利を行使または保護するため</li>
+                        <li>合併、買収、売却その他当社の事業や財産に関係する取引が発生した場合、当該取引を実行するため</li>
+                    </ul>
+
+                    <h2 class="text-xl font-bold mt-8 mb-4">３.　第三者提供</h2>
+                    <p>当社は、以下に記載する場合を除くほか、あらかじめ本人の同意を得ないで、個人データを第三者に提供しません。</p>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>お客様がパートナー様を通じて製品・サービスを購入している場合であって、当該パートナー様によるカスタマーサポートその他パートナー活動の実施に必要な範囲で、お客様の契約者情報等を当該パートナー様に提供するとき
+                        </li>
+                        <li>製品・サービスの代金または利用料金に関する請求・決済代行サービスの利用に際して、お客様の契約者情報等を当該サービスの提供元に提供する場合</li>
+                        <li>他社と共催セミナー・イベントを開催した場合であって、参加者の個人データを共催先に提供するとき</li>
+                        <li>本人による利用規約への違反行為等により、他者および当社の権利、財産、サービス等を保護するために必要と認められる場合</li>
+                        <li>法令に基づく場合</li>
+                        <li>人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難であるとき</li>
+                        <li>公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合であって、本人の同意を得ることが困難であるとき</li>
+                        <li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合であって、本人の同意を得ることにより当該事務の遂行に支障を及ぼすおそれがあるとき
+                        </li>
+                    </ul>
+
+                    <h2 class="text-xl font-bold mt-8 mb-4">４.　委託</h2>
+                    <p>当社は、個人データの取扱いの一部を外部に委託する場合があります。委託を行う場合には、充分な個人データの保護水準を確保していることを条件として委託先を選定し、個人データに関する契約を結んだ上で行います。また、当該委託先における管理については必要かつ適切な監督を行います。
+                    </p>
+
+                    <h2 class="text-xl font-bold mt-8 mb-4">５.　共同利用</h2>
+                    <p>当社は、以下の範囲で必要な場合に限り、個人データを当社とその子会社（以下「当社グループ」といいます。）間で共同利用いたします。</p>
+                    <h3 class="text-lg font-bold mt-4 mb-2">（１）共同利用する個人情報の項目</h3>
+                    <p>「１.　取得する情報」に記載の項目</p>
+                    <h3 class="text-lg font-bold mt-4 mb-2">（２）共同利用者の範囲</h3>
+                    <p>当社グループ</p>
+                    <h3 class="text-lg font-bold mt-4 mb-2">（３）利用目的</h3>
+                    <p>「２.　利用目的」に記載の目的</p>
+
+                    <h2 class="text-xl font-bold mt-8 mb-4">６.　安全管理措置</h2>
+                    <p>当社は、その取り扱う個人データ（本項においては保有個人データとして取り扱うことを予定している個人情報を含みます。）の漏えい、滅失又はき損の防止その他の個人データの安全管理のために以下に記載するものを含む必要かつ適切な措置を講じています。
+                    </p>
+
+                    <h3 class="text-lg font-bold mt-4 mb-2">（１）基本方針の策定／個人データの取扱いに係る規律の整備</h3>
+                    <p>個人データの適正な取扱いの確保のため、取得、利用、提供等の段階ごとに、取扱方法、責任者・担当者およびその任務等について社内規程を策定</p>
+
+                    <h3 class="text-lg font-bold mt-4 mb-2">（２）組織的安全管理措置</h3>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>法や社内規程に違反している事実または兆候を把握した場合の責任者への報告連絡体制を整備</li>
+                        <li>個人データの取扱状況について、定期的に自己点検を実施</li>
+                    </ul>
+
+                    <h3 class="text-lg font-bold mt-4 mb-2">（３）人的安全管理措置</h3>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>個人データの取扱いに関する留意事項について、従業者に定期的な研修を実施</li>
+                        <li>個人データについての秘密保持に関する事項を就業規則に記載</li>
+                    </ul>
+
+                    <h3 class="text-lg font-bold mt-4 mb-2">（４）物理的安全管理措置</h3>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>個人データを取り扱う区域において、従業者の入退室管理および持ち込む機器等の制限を行うとともに、権限を有しない者による個人データの閲覧を防止する措置を実施</li>
+                        <li>個人データを取り扱う機器、電子媒体および書類等の盗難または紛失等を防止するための措置を講じるとともに、事業所内の移動を含め、当該機器、電子媒体等を持ち運ぶ場合、容易に個人データが判明しないよう措置を実施
+                        </li>
+                    </ul>
+
+                    <h3 class="text-lg font-bold mt-4 mb-2">（５）技術的安全管理措置</h3>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>アクセス制御を実施して、担当者および取り扱う個人情報データベース等の範囲を限定</li>
+                        <li>個人データを取り扱う情報システムを外部からの不正アクセスまたは不正ソフトウェアから保護する仕組みを導入</li>
+                    </ul>
+
+                    <h3 class="text-lg font-bold mt-4 mb-2">（６）外的環境の把握</h3>
+                    <p>クラウドサービスに個人データを保存する場合であって、当該クラウドサービスのクラウドサービス提供事業者が所在する国または個人データが保存されるサーバが所在する国のいずれかが外国の場合、当該外国の個人情報の保護に関する制度等を把握した上で、個人データの安全管理のために必要かつ適切な措置を実施
+                    </p>
+
+                    <h2 class="text-xl font-bold mt-8 mb-4">７.　開示・訂正等・利用停止等の手続及び苦情の申出</h2>
+                    <p>当社は、保有個人データの開示、保有個人データの内容の訂正、追加もしくは削除、保有個人データの利用の停止もしくは消去または保有個人データの第三者への提供の停止の請求（以下「開示等の請求」といいます。）は、個人情報保護法上認められる範囲で対応いたします。開示等の請求または当社の個人情報の取扱いに関する苦情の申出を行いたい場合は、「１０.　お問合せ先」に記載の窓口までご連絡ください。
+                    </p>
+
+                    <h2 class="text-xl font-bold mt-8 mb-4">８.　Cookie・類似技術の利用</h2>
+                    <p>当社は、CookieおよびWebビーコン（以下「Cookie等」といいます。）により収集した当社Webサイトの閲覧履歴等とお客様の個人情報を紐づけ、当社Webサイトの訪問者分析、お客様の興味・関心に合わせた広告配信または広告効果測定を行う場合があります。
+                    </p>
+                    <p>また、当社は、お客様の個人情報を暗号化・ハッシュ化し、これをGoogle LLCに提供した上、Google
+                        LLC保有の情報と照合した結果に基づき、当社Webサイトの訪問者分析、お客様の興味・関心に合わせた広告配信または広告効果測定を行う場合があります。</p>
+
+                    <h2 class="text-xl font-bold mt-8 mb-4">９.　本ポリシーの改定</h2>
+                    <p>本ポリシーは、法令の改正、事業活動の変化等に応じて、予告なく改定されることがあります。あらかじめご了承ください。</p>
+
+                    <h2 class="text-xl font-bold mt-8 mb-4">１０.　お問合せ先</h2>
+                    <p>本ポリシーに関する各種問合せは、以下の窓口でお受けしています。</p>
+                    <p class="mt-2 font-bold">株式会社Wovi 個人情報お問い合わせ窓口</p>
+                    <p><a href="mailto:info@wovi.net" class="text-blue-600 hover:underline">info@wovi.net</a></p>
+
+                    <hr class="my-8 border-gray-300">
+                    <div class="text-sm text-gray-600 text-right">
+                        <p>2025年7月1日 制定</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- フッター -->
+        <div id="footer-placeholder"></div>
+    </div>
+
+    <script>
+        function mountLayout() {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            const footerPlaceholder = document.getElementById('footer-placeholder');
+
+            if (headerPlaceholder) {
+                headerPlaceholder.innerHTML = createHeader();
+                initializeHeaderEvents();
+            }
+            if (footerPlaceholder) {
+                footerPlaceholder.innerHTML = createFooter();
+            }
+        }
+
+        function initBackgroundLayer() {
+            if (typeof initBackground !== 'function') return;
+            try {
+                initBackground('three-canvas');
+            } catch (error) {
+                console.warn('背景アニメーションの初期化に失敗しました:', error);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            mountLayout();
+            initBackgroundLayer();
+        });
+    </script>
+</body>
+
+</html>
