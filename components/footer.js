@@ -20,7 +20,7 @@
                             <img src="/images/logowhitetext.png" alt="Wovi Logo" class="h-16 w-auto mb-4">
                             <p class="text-sm text-gray-300 leading-relaxed">
                                 株式会社Wovi<br>
-                                Progress Without Exclusion. 
+                                Innovation with no one left behind,
                             </p>
                         </div>
                         
