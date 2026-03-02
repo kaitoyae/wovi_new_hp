@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>会社概要 - Wovi</title>
-    <link rel="icon" type="image/png" href="images/logowhite.png">
+    <link rel="icon" type="image/png" href="images/kurumi_icon_black.png">
     <meta property="og:image" content="https://wovi.net/images/logowhite.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:title" content="会社概要 - Wovi">
@@ -13,256 +14,110 @@
     <meta name="twitter:image" content="https://wovi.net/images/logowhite.png">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="components/navigation.js"></script>
-    <script src="components/background.js"></script>
+    <script src="components/motion.js"></script>
     <script src="components/header.js"></script>
     <script src="components/footer.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/global.css">
-    <style>
-        /* カラーパレット */
-        :root {
-            --wovi-green: #00A9A4;
-            --spark-yellow: #FFD166;
-            --off-white: #F9F9F7;
-            --dark-text: #000000;
-        }
-        body {
-            font-family: 'Yu Gothic', 'YuGothic', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            background-color: #ffffff;
-            color: var(--dark-text);
-        }
-        .font-jp {
-            font-family: 'Yu Gothic', 'YuGothic', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-        }
-        /* 見出し用のフォント */
-        .font-heading {
-            font-family: 'General Sans', 'Noto Sans JP', sans-serif;
-        }
-        #three-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-        .content-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-        .btn-creative {
-            border: 1px solid var(--dark-text);
-            color: var(--dark-text);
-            transition: all 0.3s ease;
-        }
-        .btn-creative:hover {
-            background-color: var(--spark-yellow);
-            color: var(--dark-text);
-            border-color: var(--spark-yellow);
-        }
-        .glass-section {
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-        .hero-text-bg {
-            background: transparent;
-            padding: 1rem 1.5rem;
-            display: inline-block;
-            color: black;
-        }
-        .hero-text-bg .text-green {
-            color: var(--wovi-green);
-        }
-        /* PC - テキストを中央に配置 */
-        .hero-section {
-            min-height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 50px;
-            padding-top: 140px; /* ヘッダーの高さ約60px + 余裕80px */
-            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(240,240,240,0.2) 100%);
-        }
-        /* タブレット - 中央配置、サイズ調整 */
-        @media (max-width: 1024px) {
-            .hero-section {
-                padding: 60px 30px;
-                padding-top: 120px;
-            }
-            .hero-text-bg {
-                padding: 0.75rem 1.25rem;
-            }
-            .hero-text-bg h2 {
-                font-size: 3rem;
-                line-height: 1.1;
-            }
-        }
-        /* スマホ - 中央配置 */
-        @media (max-width: 768px) {
-            .hero-section {
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                padding: 50px 20px;
-                padding-top: 100px;
-            }
-            .hero-text-bg {
-                padding: 0.75rem 1rem;
-            }
-            .hero-text-bg h2 {
-                font-size: 2.5rem;
-                line-height: 1.2;
-            }
-        }
-        @media (max-width: 640px) {
-            .hero-section {
-                padding: 50px 15px;
-                padding-top: 90px;
-            }
-            .hero-text-bg {
-                padding: 0.5rem 0.75rem;
-            }
-            .hero-text-bg h2 {
-                font-size: 2rem;
-                line-height: 1.2;
-            }
-        }
-    </style>
 </head>
-<body>
-    <canvas id="three-canvas"></canvas>
 
-    <div class="content-wrapper min-h-screen flex flex-col">
-        <!-- ヘッダー -->
+<body>
+    <div class="bg-noise" aria-hidden="true"></div>
+
+    <div class="site-shell">
         <div id="header-placeholder"></div>
 
-        <!-- メインコンテンツ -->
-        <main class="flex-grow">
-            <!-- ミッションセクション（改良） -->
-            <section id="mission" class="relative overflow-hidden py-24 md:py-36">
-                <!-- 背景アクセント -->
-                <div aria-hidden="true" class="pointer-events-none absolute inset-0">
-                    <div class="absolute -top-24 -left-24 w-[36rem] h-[36rem] rounded-full blur-3xl opacity-30"
-                         style="background: radial-gradient(closest-side, rgba(0,169,164,0.35), rgba(0,169,164,0) 70%);"></div>
-                    <div class="absolute -bottom-20 -right-32 w-[42rem] h-[42rem] rounded-full blur-3xl opacity-20"
-                         style="background: radial-gradient(closest-side, rgba(255,209,102,0.35), rgba(255,209,102,0) 70%);"></div>
-                    <!-- ウォーターマーク（創）: 全ブレイクポイントで薄く表示 -->
-                    <div class="absolute select-none"
-                         style="left: -0.5rem; top: clamp(4rem, 10vw, 7rem); font-weight: 900; font-size: clamp(8rem, 38vw, 22rem); line-height: 1; color: rgba(0,0,0,0.035);"></div>
-                </div>
-
-                <div class="relative max-w-6xl mx-auto px-6">
-                    <!-- セクション見出し（会社概要と同スタイル） -->
-                    <div class="text-center mb-16">
-                        <h1 class="text-[2.125rem] md:text-5xl font-semibold font-jp">パーパス</h1>
-                        <p class="mt-4 text-lg text-gray-600 font-jp">PURPOSE</p>
+        <main class="page-main">
+            <section id="mission" class="section-block architectural-grid">
+                <div class="content-container">
+                    <div class="section-heading reveal-target">
+                        <p class="section-label">Purpose</p>
+                        <h2 class="section-title purpose-title">
+                            <span class="purpose-title-line">「暮らしをつくる喜び」を</span>
+                            <span class="purpose-title-line">すべての人に。</span>
+                        </h2>
+                        <p class="section-lead">
+                            Woviは、3Dプリンターと木造技術を掛け合わせ、<br>
+                            建築費高騰と深刻な人材不足という時代の課題に向き合います。<br>
+                            遠ざかりつつある“夢のマイホーム”を、<br>
+                            自然素材のぬくもりとともに、誰もが現実にできる仕組みへ。<br>
+                            まずは木造モジュール小屋から、住まいの未来を育てていきます。
+                        </p>
                     </div>
-
-                    <!-- 見出し -->
-                    <h1 class="font-heading font-bold tracking-tight leading-tight text-[2.125rem] sm:text-4xl md:text-5xl lg:text-6xl">
-                        <span class="inline">誰も取り残さないイノベーションを。</span><br>
-                        <span class="inline text-gray-500 text-3xl sm:text-4xl md:text-5xl font-normal">Innovation with no one left behind.</span>
-                    </h1>
-
-                    <!-- 補足テキスト -->
-                    <div class="mt-8 max-w-3xl text-base md:text-lg text-gray-700 leading-relaxed space-y-4">
-                        <p>AIをはじめとするテクノロジーが進歩し、世界は豊かさを増しています。</p>
-                        <p>それでも、社会の分断や格差はなくなるどころか、広がり続けています。包摂か、成長か。社会は、いつもその二択を迫ってきます。</p>
-                        <p>私たちは、その問い自体を変えていく。テクノロジーをより善いかたちで活かし、「誰も取り残さないイノベーション」を実現していきます。</p>
-                    </div>
-
-                    <!-- デコレーションの仕切り線 -->
-                    <div class="mt-10 h-px w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
                 </div>
             </section>
 
-            <!-- 会社概要セクション -->
-            <section id="company" class="py-20 md:py-32">
-                <div class="container mx-auto px-6 max-w-4xl">
-                    <div class="text-center mb-16">
-                        <h1 class="text-4xl md:text-5xl font-semibold font-jp">
-                            会社概要
-                        </h1>
-                        <p class="mt-4 text-lg text-gray-600 font-jp">
-                            Company Profile
-                        </p>
+            <section id="company" class="section-block">
+                <div class="content-container">
+                    <div class="section-heading reveal-target">
+                        <p class="section-label">Company</p>
+                        <h2 class="section-title">会社概要</h2>
                     </div>
-                    
-                    <!-- 会社情報テーブル -->
-                    <div class="rounded-2xl shadow-lg p-8 md:p-12" style="background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                        <table class="w-full">
-                            <tbody class="divide-y divide-gray-200">
-                                <tr>
-                                    <td class="py-4 pr-8 text-sm font-semibold text-gray-600 align-top w-1/3">商号</td>
-                                    <td class="py-4 text-base font-jp">株式会社Wovi</td>
+
+                    <div class="wovi-card reveal-target company-table-wrap" style="padding:clamp(1.2rem,3vw,2rem); overflow:auto;">
+                        <table class="company-table" style="width:100%; border-collapse:collapse; min-width:760px;">
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--color-line);">
+                                    <th style="text-align:left; width:220px; padding:1rem 1rem 1rem 0; color:var(--color-muted); font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase;">商号</th>
+                                    <td style="padding:1rem 0;">株式会社Wovi</td>
                                 </tr>
-                                <tr>
-                                    <td class="py-4 pr-8 text-sm font-semibold text-gray-600 align-top">英文商号</td>
-                                    <td class="py-4 text-base">Wovi Inc.</td>
+                                <tr style="border-bottom:1px solid var(--color-line);">
+                                    <th style="text-align:left; padding:1rem 1rem 1rem 0; color:var(--color-muted); font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase;">英文商号</th>
+                                    <td style="padding:1rem 0;">Wovi Inc.</td>
                                 </tr>
-                                <tr>
-                                    <td class="py-4 pr-8 text-sm font-semibold text-gray-600 align-top">設立年月日</td>
-                                    <td class="py-4 text-base font-jp">2025年7月4日</td>
+                                <tr style="border-bottom:1px solid var(--color-line);">
+                                    <th style="text-align:left; padding:1rem 1rem 1rem 0; color:var(--color-muted); font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase;">設立年月日</th>
+                                    <td style="padding:1rem 0;">2025年7月4日</td>
                                 </tr>
-                                <tr>
-                                    <td class="py-4 pr-8 text-sm font-semibold text-gray-600 align-top">本店所在地</td>
-                                    <td class="py-4 text-base font-jp">
-                                        〒333-0866<br>
-                                        埼玉県川口市芝6306番地12
+                                <tr style="border-bottom:1px solid var(--color-line);">
+                                    <th style="text-align:left; padding:1rem 1rem 1rem 0; color:var(--color-muted); font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase;">本店所在地</th>
+                                    <td style="padding:1rem 0;">〒333-0866 埼玉県川口市芝6306番地12</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--color-line);">
+                                    <th style="text-align:left; padding:1rem 1rem 1rem 0; color:var(--color-muted); font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase;">代表取締役</th>
+                                    <td style="padding:1rem 0;">八重樫 海斗</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--color-line);">
+                                    <th style="text-align:left; padding:1rem 1rem 1rem 0; color:var(--color-muted); font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase;">資本金</th>
+                                    <td style="padding:1rem 0;">金100万円</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--color-line);">
+                                    <th style="text-align:left; padding:1rem 1rem 1rem 0; color:var(--color-muted); font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; vertical-align:top;">事業目的</th>
+                                    <td style="padding:1rem 0; line-height:1.85;">
+                                        1. 各種アプリケーションソフトの企画、制作、販売、運営及び管理<br>
+                                        2. コンピュータシステムの企画、開発、販売及び保守に関する業務<br>
+                                        3. Webサイトの企画、制作、販売、運営及び管理<br>
+                                        4. インターネットを利用した各種情報提供サービス<br>
+                                        5. 経営コンサルティング業務<br>
+                                        6. 各種マーケティングリサーチ業務<br>
+                                        7. 企業の営業に関するコンサルティング業務<br>
+                                        8. 広告代理業及び各種の宣伝に関する業務<br>
+                                        9. 各種イベントの企画、制作、運営及び管理<br>
+                                        10. 前各号に附帯又は関連する一切の事業
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="py-4 pr-8 text-sm font-semibold text-gray-600 align-top">代表取締役</td>
-                                    <td class="py-4 text-base font-jp">八重樫 海斗</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-4 pr-8 text-sm font-semibold text-gray-600 align-top">資本金</td>
-                                    <td class="py-4 text-base font-jp">金100万円</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-4 pr-8 text-sm font-semibold text-gray-600 align-top">事業目的</td>
-                                    <td class="py-4 text-base font-jp">
-                                        <ol class="list-decimal list-inside space-y-2">
-                                            <li>各種アプリケーションソフトの企画、制作、販売、運営及び管理</li>
-                                            <li>コンピュータシステムの企画、開発、販売及び保守に関する業務</li>
-                                            <li>Webサイトの企画、制作、販売、運営及び管理</li>
-                                            <li>インターネットを利用した各種情報提供サービス</li>
-                                            <li>経営コンサルティング業務</li>
-                                            <li>各種マーケティングリサーチ業務</li>
-                                            <li>企業の営業に関するコンサルティング業務</li>
-                                            <li>広告代理業及び各種の宣伝に関する業務</li>
-                                            <li>各種イベントの企画、制作、運営及び管理</li>
-                                            <li>前各号に附帯又は関連する一切の事業</li>
-                                        </ol>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-4 pr-8 text-sm font-semibold text-gray-600 align-top">公告方法</td>
-                                    <td class="py-4 text-base font-jp">
-                                        電子公告により行う。ただし、事故その他やむを得ない事由によって電子公告による公告をすることができない場合は、官報に掲載して行う。
+                                    <th style="text-align:left; padding:1rem 1rem 1rem 0; color:var(--color-muted); font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; vertical-align:top;">公告方法</th>
+                                    <td style="padding:1rem 0; line-height:1.85;">
+                                        電子公告により行う。ただし、事故その他やむを得ない事由によって
+                                        電子公告による公告をすることができない場合は、官報に掲載して行う。
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    
-                    <!-- 戻るボタン -->
-                    <div class="text-center mt-12">
-                        <a href="index.html" class="btn-creative font-semibold py-3 px-8 rounded-full">
-                            トップページに戻る
-                        </a>
+
+                    <div class="reveal-target" style="margin-top:1.8rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
+                        <a href="index.html" class="btn-creative">トップページへ</a>
+                        <a href="/policy" class="btn-creative">プライバシーポリシー</a>
                     </div>
                 </div>
             </section>
         </main>
 
-        <!-- フッター -->
         <div id="footer-placeholder"></div>
     </div>
 
@@ -280,20 +135,14 @@
             }
         }
 
-        function initBackgroundLayer() {
-            if (typeof initBackground !== 'function') return;
-            try {
-                initBackground('three-canvas');
-            } catch (error) {
-                console.warn('背景アニメーションの初期化に失敗しました:', error);
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('DOMContentLoaded', function () {
             mountLayout();
-            initBackgroundLayer();
+
+            if (window.WOVI_MOTION && typeof window.WOVI_MOTION.init === 'function') {
+                window.WOVI_MOTION.init();
+            }
         });
     </script>
-
 </body>
+
 </html>

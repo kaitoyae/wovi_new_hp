@@ -4,56 +4,47 @@
         : [];
 
     function renderFooterLinks() {
-        return navLinks.map(link =>
-            `<li><a href="${link.href}" class="text-gray-300 hover:text-white transition-colors">${link.label}</a></li>`
-        ).join('\n                            ');
+        return navLinks
+            .filter((link) => !link.isCta)
+            .map((link) => `<li><a href="${link.href}" class="footer-link">${link.label}</a></li>`)
+            .join('');
     }
 
     function createFooter() {
         return `
-            <!-- フッター -->
-            <footer class="text-white py-16" style="background-color: #2d2d2d;">
-                <div class="container mx-auto px-6">
-                    <div class="grid md:grid-cols-4 gap-8 mb-12">
-                        <!-- ロゴとビジョン -->
-                        <div class="md:col-span-2">
-                            <img src="/images/logowhitetext.png" alt="Wovi Logo" class="h-16 w-auto mb-4">
-                            <p class="text-sm text-gray-300 leading-relaxed">
-                                株式会社Wovi<br>
-                                Innovation with no one left behind,
-                            </p>
+            <footer class="site-footer architectural-grid">
+                <div class="site-footer-grid">
+                    <div>
+                        <div class="footer-logo">
+                            <img src="/images/kurumi_icon.png" alt="Wovi Logo">
+                            <span>Wovi</span>
                         </div>
-                        
-                        <!-- メニュー -->
-                        <div>
-                            <h4 class="font-semibold mb-4">メニュー</h4>
-                            <ul class="space-y-2 text-sm">
-                                ${renderFooterLinks()}
-                            </ul>
-                        </div>
-                        
-                        <!-- 会社情報 -->
-                        <div>
-                            <h4 class="font-semibold mb-4">会社情報</h4>
-                            <ul class="space-y-2 text-sm text-gray-300">
-                                <li>株式会社 Wovi</li>
-                                <li>〒333-0866</li>
-                                <li>埼玉県川口市 芝6306-12</li>
-                                <li>info@wovi.net</li>
-                            </ul>
-                        </div>
+                        <p style="margin-top:0.95rem; color:var(--color-muted); line-height:1.9;">
+                            「暮らしをつくる喜び」を
+                            すべての人に。
+                        </p>
                     </div>
-                    
-                    <!-- 下部 -->
-                    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                        <div class="text-sm text-gray-400 mb-4 md:mb-0">
-                            &copy; 2025 Wovi. All Rights Reserved.
-                        </div>
-                        <div class="flex space-x-6 text-sm">
-                            <a href="/policy" class="text-gray-400 hover:text-white transition-colors">プライバシーポリシー</a>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors">利用規約</a>
-                        </div>
+
+                    <div>
+                        <h4 class="footer-title">Menu</h4>
+                        <ul class="footer-links">
+                            ${renderFooterLinks()}
+                        </ul>
                     </div>
+
+                    <div>
+                        <h4 class="footer-title">Company</h4>
+                        <ul class="footer-meta">
+                            <li>株式会社 Wovi</li>
+                            <li>〒333-0866 埼玉県川口市芝6306-12</li>
+                            <li><a href="mailto:info@wovi.net" class="footer-link">info@wovi.net</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <span>© 2026 Wovi Inc.</span>
+                    <a href="/policy" class="footer-link">Privacy Policy</a>
                 </div>
             </footer>
         `;

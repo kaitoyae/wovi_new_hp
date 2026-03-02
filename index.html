@@ -5,471 +5,211 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>株式会社Wovi</title>
-    <link rel="icon" type="image/png" href="images/logowhite.png">
+    <link rel="icon" type="image/png" href="images/kurumi_icon_black.png">
     <meta property="og:image" content="https://wovi.net/images/logowhite.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:title" content="Wovi">
-    <meta property="og:description" content="Woviは、「社会をよくするテクノロジー」を探究し、開発・運営する会社です。">
+    <meta property="og:description" content="Woviは、Kurumi|モジュール小屋キットを開発・販売する会社です。">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image" content="https://wovi.net/images/logowhite.png">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="components/navigation.js"></script>
-    <script src="components/background.js"></script>
+    <script src="components/motion.js"></script>
     <script src="components/header.js"></script>
     <script src="components/footer.js"></script>
     <script src="components/noteFeed.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/global.css">
 </head>
 
 <body>
-    <canvas id="three-canvas" aria-hidden="true"></canvas>
+    <div class="bg-noise" aria-hidden="true"></div>
 
-    <div class="content-wrapper min-h-screen flex flex-col">
-        <!-- ヘッダー -->
+    <div class="site-shell">
         <div id="header-placeholder"></div>
 
-        <!-- メインコンテンツ -->
-        <main class="flex-grow">
-            <!-- ヒーローセクション -->
-            <section class="hero-section">
-                <div class="hero-background" aria-hidden="true">
-                    <div class="hero-glow hero-glow--primary"></div>
-                    <div class="hero-glow hero-glow--secondary"></div>
-                    <!-- <div class="hero-watermark">創</div> -->
-                </div>
-                <div class="hero-content text-center">
-                    <h1 class="hero-headline font-heading">
-                        <span class="hero-headline-jp"> 誰も取り残さないイノベーションを。</span><br>
-                        <span class="hero-headline-en">Innovation with no one left behind.</span>
+        <main class="page-main">
+            <section class="hero-section architectural-grid">
+                <div class="hero-content hero-content--plain hero-reveal">
+                    <h1 class="hero-title">
+                        <span class="hero-line hero-line--desktop">「暮らしをつくる喜び」を</span>
+                        <span class="hero-line hero-line--desktop">すべての人に。</span>
+                        <span class="hero-line hero-line--mobile">「暮らしをつくる</span>
+                        <span class="hero-line hero-line--mobile">喜び」を</span>
+                        <span class="hero-line hero-line--mobile">すべての人に。</span>
                     </h1>
-                    <p class="hero-description mt-8">
-                        排除と分断が深まる未来を避けるために、誰も取り残さないイノベーションを実現します。
-                        AI.gueをはじめとするプロダクトで、その一歩を形にしています。
+                    <p class="hero-subtitle">
+                        <span class="hero-copy-line">3Dプリント・モジュール建築で、</span>
+                        <span class="hero-copy-line">家づくりを“特別なもの”から、“誰もが関われるもの”へ。</span>
                     </p>
-                    <div class="hero-cta">
-                        <a href="#business"
-                            class="inline-flex items-center gap-2 font-semibold py-3 px-10 rounded-full text-lg btn-creative">
-                            プロダクトを見る <span aria-hidden="true">&rarr;</span>
-                        </a>
+                    <div class="hero-actions">
+                        <a href="#business" class="hero-link">Kurumiを見る</a>
+                        <a href="#contact" class="hero-link">お問い合わせ</a>
                     </div>
                 </div>
             </section>
 
-
-            <!-- お知らせ -->
-            <section id="news" class="py-20 md:py-32">
-                <div class="container mx-auto px-6 max-w-6xl">
-                    <div class="text-center mb-16">
-                        <h3 class="text-sm font-semibold tracking-widest text-gray-500 uppercase">News</h3>
-                        <h4 class="mt-4 text-3xl md:text-4xl font-semibold font-jp">
-                            お知らせ
-                        </h4>
+            <section id="news" class="section-block architectural-grid">
+                <div class="content-container">
+                    <div class="section-heading reveal-target">
+                        <p class="section-label">News</p>
+                        <h2 class="section-title">お知らせ</h2>
+                        <p class="section-lead">noteで発信している最新情報を掲載しています。</p>
                     </div>
 
-                    <!-- Note記事一覧 -->
-                    <div class="grid md:grid-cols-3 gap-8" id="note-articles">
-                        <!-- 記事はJavaScriptで動的に読み込まれます -->
-                        <div class="text-center text-gray-600 font-jp col-span-full">
+                    <div class="news-grid" id="note-articles">
+                        <div class="wovi-card" style="padding:2rem; text-align:center; grid-column:1 / -1;">
                             <p>記事を読み込み中...</p>
                         </div>
                     </div>
 
-                    <!-- お知らせページへのリンク -->
-                    <div class="text-center mt-12">
-                        <a href="news.html" class="btn-creative font-semibold py-3 px-8 rounded-full">
-                            すべての記事を見る
-                        </a>
+                    <div class="reveal-target" style="margin-top:2rem; text-align:center;">
+                        <a href="news.html" class="btn-creative">すべての記事を見る</a>
                     </div>
                 </div>
             </section>
 
-            <!-- 事業内容 -->
-            <section id="business" class="py-20 md:py-32">
-                <div class="container mx-auto px-6 max-w-5xl">
-                    <div class="text-center mb-16">
-                        <h3 class="text-sm font-semibold tracking-widest text-gray-500 uppercase">Service</h3>
-                        <h4 class="mt-4 text-3xl md:text-4xl font-semibold font-jp">
-                            事業内容
-                        </h4>
+            <section id="business" class="section-block">
+                <div class="content-container">
+                    <div class="section-heading reveal-target">
+                        <p class="section-label">Product</p>
+                        <h2 class="section-title">Kurumi | モジュール小屋キット</h2>
+                        <p class="section-lead">
+                            暮らしに合わせて組み変えられる、新しい小屋のかたち。
+                            使い方と時間に合わせて拡張できるモジュールキットです。
+                        </p>
                     </div>
 
-                    <!-- AI.gue -->
-                    <div class="mb-20 md:mb-32">
-                        <div class="rounded-2xl shadow-lg p-8 md:p-12"
-                            style="background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                            <div class="inline-block px-4 py-2 rounded-full text-sm font-semibold tracking-wide text-white mb-6"
-                                style="background-color: black;">
-                                PRODUCT
+                    <div class="space-y-6">
+                        <article class="wovi-card service-card reveal-target">
+                            <div class="service-card-media">
+                                <img src="images/kurumi.png" alt="Kurumi モジュール小屋キットのロゴ" style="object-fit:contain; background:#f6f4f0; padding:1rem;">
                             </div>
-                            <div class="grid md:grid-cols-2 gap-12 items-center">
-                                <div class="flex justify-center">
-                                    <div class="w-full max-w-xl rounded-2xl overflow-hidden"
-                                        style="border: 2px solid var(--wovi-green);">
-                                        <img src="images/aigue-eyecatch.png" alt="AI.gueのサービスビジュアル"
-                                            class="w-full h-auto object-cover">
-                                    </div>
+                            <div>
+                                <span class="service-tag">Product</span>
+                                <h3 class="service-title">Kurumi</h3>
+                                <p class="service-copy">
+                                    Kurumiは、生活・仕事・趣味の変化に合わせて空間を柔軟に組み替えられる、
+                                    モジュール式の小屋キットです。必要なタイミングで拡張できる設計で、
+                                    小さな一歩から理想の空間づくりを始められます。
+                                </p>
+                                <div class="chips">
+                                    <span class="chip">モジュール設計</span>
+                                    <span class="chip">拡張可能</span>
+                                    <span class="chip">小屋キット</span>
                                 </div>
-                                <div>
-                                    <h5 class="text-2xl md:text-3xl font-semibold font-jp mb-4">
-                                        AI.gue
-                                    </h5>
-                                    <p class="text-lg font-semibold font-jp mb-6 leading-relaxed">
-                                        「読む」から「論じる」へ。AI議論プラットフォーム
-                                    </p>
-                                    <div class="font-jp text-gray-700 leading-relaxed space-y-4">
-                                        <p>ニュースをただ「読むだけ」で終わらせていませんか？</p>
-                                        <p>AI.gueは、AIメディエーター(仲介者)「メディ」を交えて議論することで、情報を「自分の確かな知見」へと変える新しいプラットフォームです。</p>
-                                    </div>
-                                    <div class="mt-8 flex flex-wrap gap-2">
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">AI議論</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">メディア</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">プラットフォーム</span>
-                                    </div>
-                                    <div class="mt-10">
-                                        <a href="https://ai-gue.wovi.net/" target="_blank" rel="noopener noreferrer"
-                                            class="inline-flex items-center gap-2 font-semibold py-3 px-8 rounded-full btn-creative">
-                                            サービスサイトへ <span aria-hidden="true">&rarr;</span>
-                                        </a>
-                                    </div>
+                                <div style="margin-top:1.25rem;">
+                                    <a href="kurumi.html" class="btn-creative">Kurumiを見る</a>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </article>
 
-                    <!-- Yukari Earth -->
-                    <div class="mb-20 md:mb-32">
-                        <div class="rounded-2xl shadow-lg p-8 md:p-12"
-                            style="background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                            <div class="inline-block px-4 py-2 rounded-full text-sm font-semibold tracking-wide text-white mb-6"
-                                style="background-color: black;">
-                                PRODUCT
+                        <article class="wovi-card service-card reveal-target">
+                            <div class="service-card-media">
+                                <img src="images/koumuten3Dlogo8.png" alt="工務店3Dプリント部のロゴ" style="object-fit:contain; background:#f6f4f0; padding:0.6rem;">
                             </div>
-                            <div class="grid md:grid-cols-2 gap-12 items-center">
-                                <div class="flex justify-center">
-                                    <div class="w-full max-w-xl rounded-2xl overflow-hidden"
-                                        style="border: 2px solid var(--wovi-green);">
-                                        <img src="images/yukariearth.png" alt="Yukari Earthのサービスビジュアル"
-                                            class="w-full h-auto object-cover">
-                                    </div>
+                            <div>
+                                <span class="service-tag">YouTube</span>
+                                <h3 class="service-title">工務店3Dプリント部</h3>
+                                <p class="service-copy">
+                                    【工務店3Dプリント部】へようこそ。建築×3Dプリンターという未開拓領域に挑む、
+                                    注文住宅の工務店による実験的プロジェクトチャンネルです。
+                                    家具を印刷する、家をプリントするという未来に向けて、
+                                    家庭用3Dプリンターでインテリア小物から人が入れる小屋づくりまで、そのプロセスを公開します。
+                                </p>
+                                <div class="chips">
+                                    <span class="chip">建築×3Dプリンター</span>
+                                    <span class="chip">小屋づくり</span>
+                                    <span class="chip">実験プロジェクト</span>
                                 </div>
-                                <div>
-                                    <h5 class="text-2xl md:text-3xl font-semibold font-jp mb-4">
-                                        Yukari Earth
-                                    </h5>
-                                    <p class="text-lg font-semibold font-jp mb-6 leading-relaxed">
-                                        住んだ人のみぞ知る深い情報を集め、土地の資産に変えるデジタル世界地図。
-                                    </p>
-                                    <div class="font-jp text-gray-700 leading-relaxed space-y-4">
-                                        <p>・ゆかりの地の情報を投稿して楽しく遊べる（※ゆかりの地域は3つまでしか選べません）</p>
-                                        <p>・地図上の多様な声をYukari AIが集約/解説</p>
-                                    </div>
-                                    <div class="mt-8 flex flex-wrap gap-2">
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">デジタル地図</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">コミュニティ</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">AI集約</span>
-                                    </div>
-                                    <div class="mt-10">
-                                        <a href="https://jimopin.wovi.net/" target="_blank" rel="noopener noreferrer"
-                                            class="inline-flex items-center gap-2 font-semibold py-3 px-8 rounded-full btn-creative">
-                                            サービスサイトへ <span aria-hidden="true">&rarr;</span>
-                                        </a>
-                                    </div>
+                                <div style="margin-top:1.25rem;">
+                                    <a href="https://www.youtube.com/@3D-Koumuten" target="_blank" rel="noopener noreferrer" class="btn-creative">チャンネルを見る</a>
                                 </div>
                             </div>
-                        </div>
+                        </article>
                     </div>
-
-                    <!-- 物件チェッカーズ -->
-                    <div class="mb-20 md:mb-32">
-                        <div class="rounded-2xl shadow-lg p-8 md:p-12"
-                            style="background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                            <div class="inline-block px-4 py-2 rounded-full text-sm font-semibold tracking-wide text-white mb-6"
-                                style="background-color: black;">
-                                PRODUCT
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-12 items-center">
-                                <div class="flex justify-center">
-                                    <div class="w-full max-w-xl rounded-2xl overflow-hidden"
-                                        style="border: 2px solid var(--spark-yellow);">
-                                        <img src="images/bukkaku_eyecatch.png" alt="物件チェッカーズのサービスビジュアル"
-                                            class="w-full h-auto object-cover">
-                                    </div>
-                                </div>
-                                <div>
-                                    <h5 class="text-2xl md:text-3xl font-semibold font-jp mb-4">物件チェッカーズ</h5>
-                                    <p class="text-lg font-semibold font-jp mb-6 leading-relaxed">
-                                        業界最安値・月額980円、不動産仲介業者向け物件確認自動化ツール。
-                                    </p>
-                                    <div class="font-jp text-gray-700 leading-relaxed space-y-4">
-                                        <p>販売図面にQRコードを貼付するだけで、物件確認から問い合わせまで完結します。営業担当は顧客対応に集中できます。</p>
-                                        <p>管理画面では問い合わせ状況と反響履歴を一元管理。初月無料でご利用いただけます。</p>
-                                    </div>
-                                    <div class="mt-8 flex flex-wrap gap-2">
-                                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">SaaS</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">不動産テック</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">業務効率化</span>
-                                    </div>
-                                    <div class="mt-10">
-                                        <a href="https://bukkaku.wovi.net/" target="_blank" rel="noopener noreferrer"
-                                            class="inline-flex items-center gap-2 font-semibold py-3 px-8 rounded-full btn-creative">
-                                            サービスサイトへ <span aria-hidden="true">&rarr;</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- メガネ用スマートトラッカー -->
-                    <div class="mb-20 md:mb-32">
-                        <div class="rounded-2xl shadow-lg p-8 md:p-12"
-                            style="background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                            <div class="inline-block px-4 py-2 rounded-full text-sm font-semibold tracking-wide text-white mb-6"
-                                style="background-color: black;">
-                                PRODUCT
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-12 items-center">
-                                <div class="flex justify-center">
-                                    <div class="w-full max-w-xl rounded-2xl overflow-hidden"
-                                        style="border: 2px solid var(--wovi-green);">
-                                        <img src="images/smarttracker.png" alt="メガネ用スマートトラッカーのサービスビジュアル"
-                                            class="w-full h-auto object-cover">
-                                    </div>
-                                </div>
-                                <div>
-                                    <h5 class="text-2xl md:text-3xl font-semibold font-jp mb-4">メガネ用スマートトラッカー</h5>
-                                    <p class="text-lg font-semibold font-jp mb-6 leading-relaxed">
-                                        「iPhoneを探す」で音を鳴らし、すぐにメガネを発見できます。
-                                    </p>
-                                    <div class="font-jp text-gray-700 leading-relaxed space-y-4">
-                                        <p>わずか数グラムのタグをメガネフレームに装着。部屋のどこに置いたかをアプリがリアルタイムで教えてくれます。</p>
-                                    </div>
-                                    <div class="mt-8 flex flex-wrap gap-2">
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">IoTデバイス</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">アクセシビリティ</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">ライフスタイル</span>
-                                    </div>
-                                    <div class="mt-10">
-                                        <a href="https://glassessmarttracker.vercel.app/" target="_blank"
-                                            rel="noopener noreferrer"
-                                            class="inline-flex items-center gap-2 font-semibold py-3 px-8 rounded-full btn-creative">
-                                            サービスサイトへ <span aria-hidden="true">&rarr;</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- DX支援 -->
-                    <div class="mb-20 md:mb-32">
-                        <div class="rounded-2xl shadow-lg p-8 md:p-12"
-                            style="background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                            <div class="inline-block px-4 py-2 rounded-full text-sm font-semibold tracking-wide text-white mb-6"
-                                style="background-color: black;">
-                                CONSIGNMENT
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-12 items-center">
-                                <div class="flex justify-center">
-                                    <div class="w-64 h-64 rounded-2xl overflow-hidden"
-                                        style="border: 2px solid var(--spark-yellow);">
-                                        <img src="images/hands.png" alt="受託開発/マーケティング支援事業"
-                                            class="w-full h-full object-cover">
-                                    </div>
-                                </div>
-                                <div>
-                                    <h5 class="text-2xl md:text-3xl font-semibold font-jp mb-4">
-                                        受託開発/マーケティング支援事業
-                                    </h5>
-                                    <p class="text-lg font-semibold font-jp mb-6 text-gray-800">
-                                        デジタルを、人と社会の共創の糧に。
-                                    </p>
-                                    <div class="font-jp text-gray-700 leading-relaxed space-y-4">
-                                        <p>私たちは、単なるツールとしてのデジタルではなく、
-                                            人や社会を前に進めるための「場」としてデザインします。</p>
-                                        <p>ARで語り継がれる物語、AIが支える新しい対話、
-                                            遊び心ある仕掛けから生まれる共感。
-                                            そこには、数字以上の価値があります。</p>
-                                    </div>
-                                    <div class="mt-8 flex flex-wrap gap-2">
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">体験型ホームページ開発</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">デジタルマーケティング</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">アプリ開発</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100">DX伴走支援</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </section>
 
-            <!-- 会社情報 -->
-            <section id="company" class="py-20 md:py-32">
-                <div class="container mx-auto px-6 max-w-4xl">
-                    <div class="text-center mb-16">
-                        <h3 class="text-sm font-semibold tracking-widest text-gray-500 uppercase">Company</h3>
-                        <h4 class="mt-4 text-3xl md:text-4xl font-semibold font-jp">
-                            企業情報
-                        </h4>
+            <section id="company" class="section-block architectural-grid">
+                <div class="content-container">
+                    <div class="section-heading reveal-target">
+                        <p class="section-label">Company</p>
+                        <h2 class="section-title">企業情報</h2>
                     </div>
 
-                    <div class="rounded-2xl shadow-lg p-8 md:p-12"
-                        style="background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                        <div class="grid md:grid-cols-2 gap-8 md:gap-12">
-                            <div class="space-y-6">
-                                <div>
-                                    <dt class="text-sm font-semibold tracking-wide text-gray-500 uppercase mb-2">会社名
-                                    </dt>
-                                    <dd class="text-lg font-jp font-semibold">株式会社 Wovi</dd>
-                                </div>
-
-                                <div>
-                                    <dt class="text-sm font-semibold tracking-wide text-gray-500 uppercase mb-2">代表者
-                                    </dt>
-                                    <dd class="text-lg font-jp font-semibold">代表取締役 八重樫 海斗</dd>
-                                </div>
-
-                                <div>
-                                    <dt class="text-sm font-semibold tracking-wide text-gray-500 uppercase mb-2">設立</dt>
-                                    <dd class="text-lg font-jp font-semibold">2025年7月</dd>
-                                </div>
+                    <div class="wovi-card" style="padding:clamp(1.2rem, 3vw, 2rem);">
+                        <div class="info-grid reveal-target">
+                            <div class="info-item">
+                                <p class="info-label">会社名</p>
+                                <p class="info-value">株式会社Wovi</p>
                             </div>
-
-                            <div class="space-y-6">
-                                <div>
-                                    <dt class="text-sm font-semibold tracking-wide text-gray-500 uppercase mb-2">資本金
-                                    </dt>
-                                    <dd class="text-lg font-jp font-semibold">1,000,000円</dd>
-                                </div>
-
-                                <div>
-                                    <dt class="text-sm font-semibold tracking-wide text-gray-500 uppercase mb-2">所在地
-                                    </dt>
-                                    <dd class="text-lg font-jp font-semibold">〒333-0866<br>埼玉県川口市 芝6306-12</dd>
-                                </div>
-
-                                <div class="pt-4">
-                                    <a href="company.html"
-                                        class="inline-block btn-creative font-semibold py-3 px-8 rounded-full">
-                                        詳細を見る
-                                    </a>
-                                </div>
+                            <div class="info-item">
+                                <p class="info-label">代表者</p>
+                                <p class="info-value">代表取締役 八重樫 海斗</p>
                             </div>
+                            <div class="info-item">
+                                <p class="info-label">設立</p>
+                                <p class="info-value">2025年7月4日</p>
+                            </div>
+                            <div class="info-item">
+                                <p class="info-label">所在地</p>
+                                <p class="info-value">〒333-0866<br>埼玉県川口市芝6306番地12</p>
+                            </div>
+                        </div>
+
+                        <div class="reveal-target" style="margin-top:1.6rem;">
+                            <a href="company.html" class="btn-creative">会社概要の詳細へ</a>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- お問い合わせ -->
-            <section id="contact" class="py-20 md:py-32">
-                <div class="container mx-auto px-6 max-w-4xl">
-                    <div class="text-center mb-16">
-                        <h3 class="text-sm font-semibold tracking-widest text-gray-500 uppercase">Contact</h3>
-                        <h4 class="mt-4 text-3xl md:text-4xl font-semibold font-jp">
-                            お問い合わせ
-                        </h4>
+            <section id="contact" class="section-block section-dark architectural-grid">
+                <div class="content-container">
+                    <div class="section-heading reveal-target">
+                        <p class="section-label">Contact</p>
+                        <h2 class="section-title">お問い合わせ</h2>
+                        <p class="section-lead">共同プロダクト開発や技術連携など、お気軽にご相談ください。</p>
                     </div>
-                    <div class="rounded-2xl shadow-lg p-8 md:p-12"
-                        style="background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                        <div class="text-center font-jp mb-12">
-                            <h5 class="text-2xl font-semibold mb-4">
-                                テクノロジーの力で、排除なき前進を。<br>
-                                一緒に、世界をよりよい場所へと変えていきませんか？
-                            </h5>
-                            <p class="text-lg text-gray-600">
-                                共同プロダクト開発など、<br class="hidden md:inline">
-                                様々な分野でのコラボレーションをお待ちしています。
-                            </p>
-                        </div>
 
-                        <form id="contact-form" class="max-w-2xl mx-auto">
-                            <div class="space-y-6">
-                                <!-- お名前 -->
-                                <div>
-                                    <label class="block text-sm font-semibold mb-2" for="contact-name">
-                                        お名前<span class="text-red-500">*</span>
-                                    </label>
-                                    <input id="contact-name" type="text" name="name" required
-                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-gray-500 focus:outline-none transition-colors">
-                                    <p class="text-xs text-gray-500 mt-1">この項目は必須です</p>
-                                </div>
+                    <div class="wovi-card form-shell reveal-target" style="background:var(--color-card-dark); border-color:rgba(246,244,240,0.2);">
+                        <form id="contact-form" class="form-grid">
+                            <div>
+                                <label class="form-label" for="contact-name" style="color:rgba(246,244,240,0.74);">お名前 *</label>
+                                <input id="contact-name" type="text" name="name" required class="form-input">
+                            </div>
 
-                                <!-- 会社名 -->
-                                <div>
-                                    <label class="block text-sm font-semibold mb-2" for="contact-company">
-                                        会社名
-                                    </label>
-                                    <input id="contact-company" type="text" name="company"
-                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-gray-500 focus:outline-none transition-colors">
-                                </div>
+                            <div>
+                                <label class="form-label" for="contact-company" style="color:rgba(246,244,240,0.74);">会社名</label>
+                                <input id="contact-company" type="text" name="company" class="form-input">
+                            </div>
 
-                                <!-- メールアドレス -->
-                                <div>
-                                    <label class="block text-sm font-semibold mb-2" for="contact-email">
-                                        メールアドレス<span class="text-red-500">*</span>
-                                    </label>
-                                    <input id="contact-email" type="email" name="email" required
-                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-gray-500 focus:outline-none transition-colors">
-                                </div>
+                            <div>
+                                <label class="form-label" for="contact-email" style="color:rgba(246,244,240,0.74);">メールアドレス *</label>
+                                <input id="contact-email" type="email" name="email" required class="form-input">
+                            </div>
 
-                                <!-- 電話番号 -->
-                                <div>
-                                    <label class="block text-sm font-semibold mb-2" for="contact-phone">
-                                        電話番号
-                                    </label>
-                                    <input id="contact-phone" type="tel" name="phone"
-                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-gray-500 focus:outline-none transition-colors">
-                                </div>
+                            <div>
+                                <label class="form-label" for="contact-phone" style="color:rgba(246,244,240,0.74);">電話番号</label>
+                                <input id="contact-phone" type="tel" name="phone" class="form-input">
+                            </div>
 
-                                <!-- お問い合わせ内容 -->
-                                <div>
-                                    <label class="block text-sm font-semibold mb-2" for="contact-message">
-                                        お問い合わせ内容<span class="text-red-500">*</span>
-                                    </label>
-                                    <textarea id="contact-message" name="message" rows="5" required
-                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-gray-500 focus:outline-none transition-colors resize-none"></textarea>
-                                </div>
+                            <div>
+                                <label class="form-label" for="contact-message" style="color:rgba(246,244,240,0.74);">お問い合わせ内容 *</label>
+                                <textarea id="contact-message" name="message" required class="form-textarea"></textarea>
+                            </div>
 
-                                <!-- プライバシーポリシー -->
-                                <div class="flex items-start">
-                                    <input type="checkbox" id="privacy-policy" name="privacy" required
-                                        class="mt-1 mr-3">
-                                    <label for="privacy-policy" class="text-sm text-gray-600">
-                                        <a href="#" class="underline hover:text-gray-800">プライバシーポリシー</a>に同意する
-                                    </label>
-                                </div>
+                            <label style="display:flex; gap:0.6rem; align-items:flex-start; color:rgba(246,244,240,0.74); font-size:0.84rem;">
+                                <input id="privacy-policy" type="checkbox" name="privacy" required style="margin-top:0.25rem;">
+                                <span><a href="/policy" style="text-decoration:underline;">プライバシーポリシー</a>に同意する</span>
+                            </label>
 
-                                <!-- 送信ボタン -->
-                                <div class="text-center pt-4">
-                                    <button type="submit"
-                                        class="inline-block font-semibold py-3 px-10 rounded-full text-white bg-black hover:bg-gray-800 transition-colors duration-200">
-                                        送信する
-                                    </button>
-                                </div>
+                            <div>
+                                <button type="submit" class="btn-creative btn-creative--light" style="cursor:pointer;">送信する</button>
                             </div>
                         </form>
                     </div>
@@ -477,7 +217,6 @@
             </section>
         </main>
 
-        <!-- フッター -->
         <div id="footer-placeholder"></div>
     </div>
 
@@ -499,43 +238,28 @@
             const contactForm = document.getElementById('contact-form');
             if (!contactForm) return;
 
-            contactForm.addEventListener('submit', function (e) {
-                e.preventDefault();
+            contactForm.addEventListener('submit', function (event) {
+                event.preventDefault();
 
                 const formData = new FormData(contactForm);
                 const data = Object.fromEntries(formData);
                 const subject = encodeURIComponent('お問い合わせ - Wovi');
-                const body = encodeURIComponent(`
-お名前: ${data.name}
-会社名: ${data.company || '(未入力)'}
-メールアドレス: ${data.email}
-電話番号: ${data.phone || '(未入力)'}
+                const body = encodeURIComponent(`\nお名前: ${data.name}\n会社名: ${data.company || '(未入力)'}\nメールアドレス: ${data.email}\n電話番号: ${data.phone || '(未入力)'}\n\nお問い合わせ内容:\n${data.message}\n                `);
 
-お問い合わせ内容:
-${data.message}
-                `);
-
-                const mailtoUrl = `mailto:info@wovi.net?subject=${subject}&body=${body}`;
-                window.location.href = mailtoUrl;
-                alert('メールアプリが開きます。\n送信完了後、担当者よりご連絡させていただきます。');
+                window.location.href = `mailto:info@wovi.net?subject=${subject}&body=${body}`;
+                alert('メールアプリが開きます。送信完了後、担当者よりご連絡させていただきます。');
                 contactForm.reset();
             });
         }
 
-        function initBackgroundLayer() {
-            if (typeof initBackground !== 'function') return;
-            try {
-                initBackground('three-canvas');
-            } catch (error) {
-                console.warn('背景アニメーションの初期化に失敗しました:', error);
-            }
-        }
-
         window.addEventListener('DOMContentLoaded', function () {
             mountLayout();
-            initBackgroundLayer();
 
-            if (window.NoteFeed && typeof window.NoteFeed.load === 'function' && document.getElementById('note-articles')) {
+            if (window.WOVI_MOTION && typeof window.WOVI_MOTION.init === 'function') {
+                window.WOVI_MOTION.init();
+            }
+
+            if (window.NoteFeed && typeof window.NoteFeed.load === 'function') {
                 window.NoteFeed.load({ containerId: 'note-articles', limit: 3, variant: 'default' });
             }
 

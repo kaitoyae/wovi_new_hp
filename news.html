@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お知らせ - Wovi</title>
-    <link rel="icon" type="image/png" href="images/logowhite.png">
+    <link rel="icon" type="image/png" href="images/kurumi_icon_black.png">
     <meta property="og:image" content="https://wovi.net/images/logowhite.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:title" content="お知らせ - Wovi">
@@ -13,82 +14,52 @@
     <meta name="twitter:image" content="https://wovi.net/images/logowhite.png">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="components/navigation.js"></script>
-    <script src="components/background.js"></script>
+    <script src="components/motion.js"></script>
     <script src="components/header.js"></script>
     <script src="components/footer.js"></script>
     <script src="components/noteFeed.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/global.css">
 </head>
-<body>
-    <canvas id="three-canvas" aria-hidden="true"></canvas>
 
-    <div class="content-wrapper min-h-screen flex flex-col">
-        <!-- ヘッダー -->
+<body>
+    <div class="bg-noise" aria-hidden="true"></div>
+
+    <div class="site-shell">
         <div id="header-placeholder"></div>
 
-        <!-- メインコンテンツ -->
-        <main class="flex-grow pt-32">
-            <!-- お知らせセクション -->
-            <section class="py-20 md:py-32">
-                <div class="container mx-auto px-6 max-w-6xl">
-                    <div class="text-center mb-16">
-                        <h1 class="text-4xl md:text-5xl font-semibold font-jp">
-                            お知らせ
-                        </h1>
-                        <p class="mt-4 text-lg text-gray-600 font-jp">
-                            Woviの最新情報をお届けします
-                        </p>
+        <main class="page-main">
+            <section class="hero-section architectural-grid" style="min-height:48svh;">
+                <div class="hero-content hero-reveal" style="max-width:760px;">
+                    <p class="hero-kicker">News</p>
+                    <h1 class="hero-title">お知らせ</h1>
+                    <p class="hero-subtitle">Woviの活動、プロダクト更新、イベント情報をお届けします。</p>
+                </div>
+            </section>
+
+            <section class="section-block architectural-grid">
+                <div class="content-container">
+                    <div class="section-heading reveal-target">
+                        <p class="section-label">Latest</p>
+                        <h2 class="section-title">最新記事一覧</h2>
                     </div>
-                    
-                    <!-- Note記事一覧 -->
-                    <div id="note-articles" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <!-- 記事はJavaScriptで動的に読み込まれます -->
-                        <!-- ローディングスケルトン -->
-                        <div class="article-card rounded-lg shadow-md overflow-hidden">
-                            <div class="loading-skeleton h-48"></div>
-                            <div class="p-6">
-                                <div class="loading-skeleton h-4 w-24 mb-2"></div>
-                                <div class="loading-skeleton h-6 mb-3"></div>
-                                <div class="loading-skeleton h-4 mb-1"></div>
-                                <div class="loading-skeleton h-4 w-3/4"></div>
-                            </div>
-                        </div>
-                        <div class="article-card rounded-lg shadow-md overflow-hidden">
-                            <div class="loading-skeleton h-48"></div>
-                            <div class="p-6">
-                                <div class="loading-skeleton h-4 w-24 mb-2"></div>
-                                <div class="loading-skeleton h-6 mb-3"></div>
-                                <div class="loading-skeleton h-4 mb-1"></div>
-                                <div class="loading-skeleton h-4 w-3/4"></div>
-                            </div>
-                        </div>
-                        <div class="article-card rounded-lg shadow-md overflow-hidden">
-                            <div class="loading-skeleton h-48"></div>
-                            <div class="p-6">
-                                <div class="loading-skeleton h-4 w-24 mb-2"></div>
-                                <div class="loading-skeleton h-6 mb-3"></div>
-                                <div class="loading-skeleton h-4 mb-1"></div>
-                                <div class="loading-skeleton h-4 w-3/4"></div>
-                            </div>
+
+                    <div id="note-articles" class="news-grid news-grid--wide">
+                        <div class="wovi-card" style="padding:2rem; text-align:center; grid-column:1 / -1;">
+                            <p>記事を読み込み中...</p>
                         </div>
                     </div>
-                    
-                    <!-- noteページへのリンク -->
-                    <div class="text-center mt-12">
-                        <a href="https://note.com/wovi/all" target="_blank" rel="noopener noreferrer" class="btn-creative font-semibold py-3 px-8 rounded-full">
-                            noteで記事を見る
-                        </a>
+
+                    <div class="reveal-target" style="margin-top:2rem; text-align:center;">
+                        <a href="https://note.com/wovi/all" target="_blank" rel="noopener noreferrer" class="btn-creative">noteで記事を見る</a>
                     </div>
                 </div>
             </section>
         </main>
 
-        <!-- フッター -->
         <div id="footer-placeholder"></div>
     </div>
 
@@ -106,24 +77,18 @@
             }
         }
 
-        function initBackgroundLayer() {
-            if (typeof initBackground !== 'function') return;
-            try {
-                initBackground('three-canvas');
-            } catch (error) {
-                console.warn('背景アニメーションの初期化に失敗しました:', error);
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('DOMContentLoaded', function () {
             mountLayout();
-            initBackgroundLayer();
 
-            const noteSection = document.getElementById('note-articles');
-            if (noteSection && window.NoteFeed && typeof window.NoteFeed.load === 'function') {
+            if (window.WOVI_MOTION && typeof window.WOVI_MOTION.init === 'function') {
+                window.WOVI_MOTION.init();
+            }
+
+            if (window.NoteFeed && typeof window.NoteFeed.load === 'function') {
                 window.NoteFeed.load({ containerId: 'note-articles', limit: 9, variant: 'news' });
             }
         });
     </script>
 </body>
+
 </html>

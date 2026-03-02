@@ -1,4 +1,4 @@
-(function(global) {
+(function (global) {
     const CREATOR_SLUG = 'wovi';
     const NOTE_V2_URL = `https://note.com/api/v2/creators/${CREATOR_SLUG}/contents?kind=note&page=1`;
     const NOTE_V1_URL = `https://note.com/api/v1/creators/${CREATOR_SLUG}/contents?kind=note&page=1`;
@@ -7,27 +7,27 @@
     const RSS_API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
     const CORS_PROXY = 'https://corsproxy.io/?';
     const RSS_TIMEOUT_MS = 1500;
+    const CACHE_TTL_MS = 5 * 60 * 1000;
+    const CACHE_KEY_PREFIX = 'wovi_note_articles_v2';
 
     const VARIANTS = {
         default: {
-            containerClasses: 'rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300',
-            containerStyles: {
-                background: 'rgba(255, 255, 255, 0.4)',
-                backdropFilter: 'blur(8px)',
-                webkitBackdropFilter: 'blur(8px)'
-            },
-            titleTag: 'h5',
-            descriptionLimit: 150,
-            descriptionClasses: 'text-gray-600 text-sm leading-relaxed mb-4',
-            titleClasses: 'text-lg font-semibold font-jp mb-3 line-clamp-2'
-        },
-        news: {
-            containerClasses: 'article-card rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300',
+            containerClasses: 'wovi-card overflow-hidden',
             containerStyles: {},
             titleTag: 'h3',
-            descriptionLimit: 120,
-            descriptionClasses: 'text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3',
-            titleClasses: 'text-lg font-semibold font-jp mb-3 line-clamp-2'
+            descriptionLimit: 130,
+            descriptionClasses: 'line-clamp-3',
+            titleClasses: 'line-clamp-2',
+            bodyWrapperClasses: 'p-6'
+        },
+        news: {
+            containerClasses: 'article-card overflow-hidden',
+            containerStyles: {},
+            titleTag: 'h2',
+            descriptionLimit: 170,
+            descriptionClasses: 'line-clamp-3',
+            titleClasses: 'line-clamp-2',
+            bodyWrapperClasses: 'p-6'
         }
     };
 
@@ -35,9 +35,15 @@
         return `${CORS_PROXY}${encodeURIComponent(url)}`;
     }
 
-    async function safeFetchJson(url) {
+    function withCacheBust(url) {
+        const separator = url.includes('?') ? '&' : '?';
+        return `${url}${separator}_ts=${Date.now()}`;
+    }
+
+    async function safeFetchJson(url, forceRefresh = false) {
         try {
-            const response = await fetch(url);
+            const requestUrl = forceRefresh ? withCacheBust(url) : url;
+            const response = await fetch(requestUrl, { cache: forceRefresh ? 'no-store' : 'default' });
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}`);
             }
@@ -51,7 +57,7 @@
     function buildRssImageMap(rssData) {
         const map = {};
         if (rssData?.items) {
-            rssData.items.forEach(item => {
+            rssData.items.forEach((item) => {
                 if (item.link && item.thumbnail) {
                     map[item.link] = item.thumbnail;
                 }
@@ -116,7 +122,7 @@
             title: item.name || '',
             link: item.noteUrl || '',
             pubDate: item.publishAt,
-            description: stripHtml(item.body).substring(0, 240),
+            description: stripHtml(item.body).substring(0, 260),
             thumbnail: imageUrl,
             isUserProfile,
             noteKey,
@@ -129,7 +135,7 @@
             title: item.title || '',
             link: item.link || '',
             pubDate: item.pubDate || item.published || new Date().toISOString(),
-            description: stripHtml(item.description).substring(0, 240),
+            description: stripHtml(item.description).substring(0, 260),
             thumbnail: item.thumbnail || '',
             isUserProfile: false,
             noteKey: '',
@@ -137,13 +143,60 @@
         };
     }
 
-    async function fetchNoteContents(limit) {
-        const noteV2Data = await safeFetchJson(withProxy(NOTE_V2_URL));
+    function getCacheKey(limit) {
+        return `${CACHE_KEY_PREFIX}_${limit}`;
+    }
+
+    function readCache(limit) {
+        try {
+            const raw = localStorage.getItem(getCacheKey(limit));
+            if (!raw) return null;
+            const parsed = JSON.parse(raw);
+            if (!parsed || !Array.isArray(parsed.articles) || !parsed.cachedAt) return null;
+            if (Date.now() - parsed.cachedAt > CACHE_TTL_MS) {
+                localStorage.removeItem(getCacheKey(limit));
+                return null;
+            }
+            return parsed;
+        } catch (error) {
+            console.warn('noteキャッシュ読み込み失敗:', error);
+            return null;
+        }
+    }
+
+    function writeCache(limit, articles) {
+        try {
+            const payload = JSON.stringify({
+                cachedAt: Date.now(),
+                articles
+            });
+            localStorage.setItem(getCacheKey(limit), payload);
+        } catch (error) {
+            console.warn('noteキャッシュ保存失敗:', error);
+        }
+    }
+
+    function clearCache(limit) {
+        if (typeof limit === 'number') {
+            localStorage.removeItem(getCacheKey(limit));
+            return;
+        }
+        try {
+            Object.keys(localStorage)
+                .filter((key) => key.startsWith(CACHE_KEY_PREFIX))
+                .forEach((key) => localStorage.removeItem(key));
+        } catch (error) {
+            console.warn('noteキャッシュ削除失敗:', error);
+        }
+    }
+
+    async function fetchNoteContents(limit, forceRefresh = false) {
+        const noteV2Data = await safeFetchJson(withProxy(NOTE_V2_URL), forceRefresh);
         if (noteV2Data?.data?.contents?.length) {
             return noteV2Data.data.contents.slice(0, limit);
         }
 
-        const noteV1Data = await safeFetchJson(withProxy(NOTE_V1_URL));
+        const noteV1Data = await safeFetchJson(withProxy(NOTE_V1_URL), forceRefresh);
         if (noteV1Data?.data?.contents?.length) {
             return noteV1Data.data.contents.slice(0, limit);
         }
@@ -151,17 +204,17 @@
         return null;
     }
 
-    async function fetchArticles(limit = 3) {
-        const rssPromise = safeFetchJson(RSS_API_URL);
-        const noteContents = await fetchNoteContents(limit);
+    async function fetchArticles(limit = 3, forceRefresh = false) {
+        const rssPromise = safeFetchJson(RSS_API_URL, forceRefresh);
+        const noteContents = await fetchNoteContents(limit, forceRefresh);
 
         if (noteContents?.length) {
             const rssData = await Promise.race([
                 rssPromise,
-                new Promise(resolve => setTimeout(() => resolve(null), RSS_TIMEOUT_MS))
+                new Promise((resolve) => setTimeout(() => resolve(null), RSS_TIMEOUT_MS))
             ]);
             const rssImages = buildRssImageMap(rssData);
-            return noteContents.map(item => normalizeArticle(item, rssImages));
+            return noteContents.map((item) => normalizeArticle(item, rssImages));
         }
 
         const rssData = await rssPromise;
@@ -180,20 +233,20 @@
             element.style[key] = value;
         });
 
-        const TitleTag = config.titleTag;
+        const titleTag = config.titleTag;
         element.innerHTML = `
             <div data-article-image></div>
-            <div class="p-6">
-                <div class="text-sm text-gray-500 mb-2">
+            <div class="${config.bodyWrapperClasses}">
+                <div class="note-card-date">
                     ${formatDate(article.pubDate)}
                 </div>
-                <${TitleTag} class="${config.titleClasses}">
+                <${titleTag} class="${config.titleClasses}" style="margin-top:0.7rem; font-family:var(--font-heading, 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif); font-size:1.2rem; letter-spacing:0.04em; font-weight:400; line-height:1.5;">
                     ${article.title}
-                </${TitleTag}>
-                <p class="${config.descriptionClasses}">
+                </${titleTag}>
+                <p class="${config.descriptionClasses}" style="margin-top:0.7rem; color:var(--color-muted); line-height:1.8;">
                     ${truncate(article.description, config.descriptionLimit)}
                 </p>
-                <a href="${article.link}" target="_blank" rel="noopener noreferrer" class="inline-block text-sm font-medium py-2 px-4 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors duration-200">
+                <a href="${article.link}" target="_blank" rel="noopener noreferrer" class="note-card-link" style="margin-top:1rem;">
                     記事を読む
                 </a>
             </div>
@@ -210,16 +263,24 @@
 
         const imageUrl = imageUrlOverride || article.thumbnail;
         if (imageUrl) {
-            wrapper.className = `h-48 ${article.isUserProfile ? 'flex items-center justify-center' : 'overflow-hidden'}`;
-            wrapper.style.backgroundColor = article.isUserProfile ? 'white' : '';
+            wrapper.className = `h-56 ${article.isUserProfile ? 'flex items-center justify-center' : 'overflow-hidden'}`;
+            wrapper.style.backgroundColor = article.isUserProfile ? 'rgba(255,255,255,0.85)' : '';
             wrapper.innerHTML = `
                 <img src="${imageUrl}" alt="${article.title}"
-                     class="${article.isUserProfile ? '' : 'w-full h-full'} object-cover hover:scale-105 transition-transform duration-300"
-                     style="${article.isUserProfile ? 'max-width: 50%; max-height: 50%; object-fit: contain;' : 'max-width: 100%; max-height: 100%; object-fit: cover;'}"
+                     class="${article.isUserProfile ? '' : 'w-full h-full'} object-cover"
+                     style="${article.isUserProfile ? 'max-width: 50%; max-height: 50%; object-fit: contain;' : 'max-width:100%; max-height:100%; object-fit:cover; transition:transform .45s ease;'}"
                      loading="lazy">
             `;
             const img = wrapper.querySelector('img');
             if (img) {
+                if (!article.isUserProfile) {
+                    img.addEventListener('mouseover', () => {
+                        img.style.transform = 'scale(1.05)';
+                    });
+                    img.addEventListener('mouseout', () => {
+                        img.style.transform = 'scale(1)';
+                    });
+                }
                 img.addEventListener('error', () => renderFallbackImage(wrapper));
             }
         } else {
@@ -229,15 +290,15 @@
 
     function renderFallbackImage(wrapper) {
         if (!wrapper) return;
-        wrapper.className = 'h-48 flex items-center justify-center';
-        wrapper.style.backgroundColor = 'var(--wovi-green)';
-        wrapper.innerHTML = '';
+        wrapper.className = 'h-56 flex items-center justify-center';
+        wrapper.style.backgroundColor = 'var(--color-kurumi-soft)';
+        wrapper.innerHTML = '<span style="letter-spacing:0.2em; font-size:0.68rem; color:var(--color-kurumi); text-transform:uppercase;">WOVI NOTE</span>';
     }
 
-    async function requestDetailImage(article, wrapper) {
+    async function requestDetailImage(article, wrapper, forceRefresh = false) {
         if (!article?.noteKey) return;
 
-        const detailData = await safeFetchJson(withProxy(`${NOTE_DETAIL_URL}${article.noteKey}`));
+        const detailData = await safeFetchJson(withProxy(`${NOTE_DETAIL_URL}${article.noteKey}`), forceRefresh);
         const detailImage = detailData?.data?.thumbnailExternalUrl ||
             detailData?.data?.eyecatch?.src ||
             detailData?.data?.eyecatch?.url;
@@ -251,30 +312,41 @@
 
     function renderFallbackState() {
         return `
-            <div class="col-span-full text-center">
-                <div class="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300" style="background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                    <div class="h-48 flex items-center justify-center" style="background-color: var(--wovi-green);"></div>
-                    <div class="p-6">
-                        <h5 class="text-lg font-semibold font-jp mb-3">
-                            最新記事はnoteで公開中
-                        </h5>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                            Woviの最新情報や活動報告をnoteで発信しています。
-                        </p>
-                        <a href="https://note.com/wovi/all" target="_blank" rel="noopener noreferrer" class="inline-block text-sm font-medium py-2 px-4 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors duration-200">
-                            noteで記事を見る
-                        </a>
-                    </div>
-                </div>
+            <div class="wovi-card" style="padding:2rem; text-align:center; grid-column:1 / -1;">
+                <h3 style="font-family:var(--font-heading, 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif); font-size:1.35rem; font-weight:400; letter-spacing:0.06em;">最新記事はnoteで公開中</h3>
+                <p style="margin-top:0.8rem; color:var(--color-muted); line-height:1.9;">
+                    Woviの最新情報や活動報告をnoteで発信しています。
+                </p>
+                <a href="https://note.com/wovi/all" target="_blank" rel="noopener noreferrer" class="note-card-link" style="margin-top:1.2rem;">
+                    noteで記事を見る
+                </a>
             </div>
         `;
+    }
+
+    function getArticleSignature(articles) {
+        return (articles || [])
+            .map((article) => `${article.link}|${article.pubDate}|${article.title}`)
+            .join('||');
+    }
+
+    function renderArticles(container, articles, variant, forceRefreshForDetail = false) {
+        container.innerHTML = '';
+        articles.forEach((article) => {
+            const { element, imageWrapper } = createArticleElement(article, variant);
+            container.appendChild(element);
+            if (article.needsDetailImage) {
+                requestDetailImage(article, imageWrapper, forceRefreshForDetail);
+            }
+        });
     }
 
     async function loadNoteFeed(options = {}) {
         const {
             containerId = 'note-articles',
             limit = 3,
-            variant = 'default'
+            variant = 'default',
+            forceRefresh = false
         } = options;
 
         const container = document.getElementById(containerId);
@@ -284,22 +356,32 @@
         }
 
         try {
-            const articles = await fetchArticles(limit);
+            const cachedPayload = forceRefresh ? null : readCache(limit);
+            if (cachedPayload?.articles?.length) {
+                renderArticles(container, cachedPayload.articles, variant, false);
+
+                // キャッシュ表示後は毎回裏で再取得し、差分があれば即更新（SWR）
+                fetchArticles(limit, true).then((freshArticles) => {
+                    if (!freshArticles?.length) return;
+                    if (getArticleSignature(freshArticles) !== getArticleSignature(cachedPayload.articles)) {
+                        renderArticles(container, freshArticles, variant, true);
+                    }
+                    writeCache(limit, freshArticles);
+                }).catch((error) => {
+                    console.warn('note記事のバックグラウンド更新に失敗しました:', error);
+                });
+
+                return cachedPayload.articles;
+            }
+
+            const articles = await fetchArticles(limit, forceRefresh);
             if (!articles.length) {
                 container.innerHTML = renderFallbackState();
                 return [];
             }
 
-            container.innerHTML = '';
-
-            articles.forEach(article => {
-                const { element, imageWrapper } = createArticleElement(article, variant);
-                container.appendChild(element);
-                if (article.needsDetailImage) {
-                    requestDetailImage(article, imageWrapper);
-                }
-            });
-
+            renderArticles(container, articles, variant, forceRefresh);
+            writeCache(limit, articles);
             return articles;
         } catch (error) {
             console.warn('note記事の読み込みに失敗しました:', error);
@@ -310,6 +392,7 @@
 
     global.NoteFeed = {
         load: loadNoteFeed,
-        fetchArticles
+        fetchArticles,
+        clearCache
     };
 })(window);
