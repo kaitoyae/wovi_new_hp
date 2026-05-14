@@ -48,6 +48,21 @@
   ],
   "redirects": [
     {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/policy/index.html",
+      "destination": "/policy/",
+      "permanent": true
+    },
+    {
+      "source": "/policy",
+      "destination": "/policy/",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [
         {

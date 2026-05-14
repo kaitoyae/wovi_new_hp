@@ -44,7 +44,7 @@
 
                 <div class="footer-bottom">
                     <span>© 2026 Wovi Inc.</span>
-                    <a href="/policy" class="footer-link">Privacy Policy</a>
+                    <a href="/policy/" class="footer-link">Privacy Policy</a>
                 </div>
             </footer>
         `;

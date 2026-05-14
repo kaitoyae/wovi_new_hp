@@ -4,13 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kurumi</title>
-    <meta name="description" content="組み変える小屋、はじめよう。Kurumi プロダクトページ">
+    <title>Kurumi | モジュール小屋キット - Wovi</title>
+    <meta name="description" content="Kurumiは、暮らしや仕事の変化に合わせて組み替えられるWoviのモジュール小屋キットです。直感的な設計体験と着脱可能なジョイントで空間づくりを支えます。">
+    <link rel="canonical" href="https://wovi.net/kurumi.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wovi.net/kurumi.html">
     <meta property="og:image" content="https://wovi.net/images/kurumi_icon_black.png">
     <meta property="og:image:type" content="image/png">
-    <meta property="og:title" content="Kurumi">
-    <meta property="og:description" content="組み変える小屋、はじめよう。Kurumi プロダクトページ">
+    <meta property="og:title" content="Kurumi | モジュール小屋キット - Wovi">
+    <meta property="og:description" content="Kurumiは、暮らしや仕事の変化に合わせて組み替えられるWoviのモジュール小屋キットです。">
     <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Kurumi | モジュール小屋キット - Wovi">
+    <meta name="twitter:description" content="Kurumiは、暮らしや仕事の変化に合わせて組み替えられるWoviのモジュール小屋キットです。">
     <meta name="twitter:image" content="https://wovi.net/images/kurumi_icon_black.png">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://corsproxy.io https://note.com https://api.rss2json.com; worker-src 'self' blob:; form-action 'self'; upgrade-insecure-requests">
     <link rel="icon" type="image/png" href="images/kurumi_icon_black.png">
@@ -121,8 +126,24 @@
     </style>
 </head>
 
-<body class="selection:bg-[#7A533E] selection:text-[#F6F4F0]">
-    <div id="app"></div>
+    <body class="selection:bg-[#7A533E] selection:text-[#F6F4F0]">
+    <div id="app">
+        <main style="min-height:100svh; padding:clamp(4rem,10vw,8rem) 1.5rem; display:grid; place-items:center; text-align:center;">
+            <section style="max-width:48rem;">
+                <p style="margin:0 0 1rem; color:#7A533E; letter-spacing:0.18em; text-transform:uppercase;">Kurumi</p>
+                <h1 class="font-mincho" style="margin:0; font-size:clamp(2.4rem,7vw,5.6rem); line-height:1.18; font-weight:400; color:#2C2825;">
+                    組み変える小屋、はじめよう。
+                </h1>
+                <p style="margin:1.5rem auto 0; max-width:40rem; color:#5A544D; line-height:1.9;">
+                    Kurumiは、暮らしや仕事の変化に合わせて組み替えられるWoviのモジュール小屋キットです。
+                    直感的な設計体験と着脱可能なジョイントで、自由な空間づくりを支えます。
+                </p>
+                <p style="margin-top:1.5rem;">
+                    <a href="/" style="color:#7A533E; text-decoration:underline;">Woviトップページへ</a>
+                </p>
+            </section>
+        </main>
+    </div>
 
     <script type="importmap">
         {
@@ -380,10 +401,10 @@
                             KURUMI
                         </h2>
                         <div className="mt-12 flex flex-col md:flex-row gap-8 md:gap-24 text-xs tracking-[0.2em] font-sans text-[#5A544D] uppercase reveal-target">
-                            <a href="#" className="hover:text-[#7A533E] transition-colors">Contact</a>
-                            <a href="#" className="hover:text-[#7A533E] transition-colors">Catalog</a>
-                            <a href="#" className="hover:text-[#7A533E] transition-colors">Journal</a>
-                            <a href="#" className="hover:text-[#7A533E] transition-colors">Instagram</a>
+                            <a href="/#contact" className="hover:text-[#7A533E] transition-colors">Contact</a>
+                            <a href="/" className="hover:text-[#7A533E] transition-colors">Wovi</a>
+                            <a href="/news.html" className="hover:text-[#7A533E] transition-colors">Journal</a>
+                            <a href="/company.html" className="hover:text-[#7A533E] transition-colors">Company</a>
                         </div>
                         <p className="mt-20 text-[10px] tracking-widest text-[#A39D95] font-sans uppercase">
                             © 2026 Kurumi. All rights reserved.
