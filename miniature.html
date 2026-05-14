@@ -130,7 +130,7 @@
 
         .miniature-photo-main img,
         .miniature-photo-sub img,
-        .case-card img {
+        .case-gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -200,31 +200,42 @@
             line-height: 1.55;
         }
 
-        .case-grid,
+        .case-gallery,
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 1.15rem;
         }
 
-        .case-card {
-            overflow: hidden;
-        }
-
-        .case-card figure {
-            aspect-ratio: 4 / 3;
+        .case-gallery-item {
+            aspect-ratio: 1;
             margin: 0;
             overflow: hidden;
             background: var(--color-kinari-deep);
+            border: 1px solid rgba(122, 83, 62, 0.18);
+            box-shadow: var(--shadow-soft);
         }
 
-        .case-card-body,
+        .case-gallery-item img {
+            display: block;
+            transition: transform 0.45s ease;
+        }
+
+        .case-gallery-item:hover img {
+            transform: scale(1.035);
+        }
+
+        .case-gallery-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.8rem;
+        }
+
         .feature-card,
         .flow-item {
             padding: clamp(1.1rem, 2.6vw, 1.5rem);
         }
 
-        .case-card h3,
         .feature-card h3,
         .flow-item h3 {
             margin: 0;
@@ -234,7 +245,6 @@
             font-size: 1.14rem;
         }
 
-        .case-card p,
         .feature-card p,
         .flow-item p,
         .price-note {
@@ -244,7 +254,6 @@
             font-size: 0.94rem;
         }
 
-        .case-number,
         .flow-number {
             display: block;
             margin-bottom: 0.72rem;
@@ -326,7 +335,6 @@
                 min-height: clamp(360px, 72vw, 560px);
             }
 
-            .case-grid,
             .feature-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
@@ -353,10 +361,14 @@
             }
 
             .miniature-meta-grid,
-            .case-grid,
             .feature-grid,
             .flow-list {
                 grid-template-columns: minmax(0, 1fr);
+            }
+
+            .case-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.75rem;
             }
 
             .miniature-photo-main {
@@ -472,43 +484,24 @@
                         <p class="section-label">Case studies</p>
                         <h2 class="section-title">制作事例</h2>
                         <p class="section-lead">
-                            用途や見せ方に合わせて、外観の再現度、サイズ、台座、色味を調整します。
+                            実際に制作した住宅ミニチュアの写真です。外観の雰囲気やサイズ感の参考にご覧ください。
                         </p>
                     </div>
 
-                    <div class="case-grid">
-                        <article class="wovi-card case-card reveal-target">
-                            <figure>
-                                <img src="https://images.unsplash.com/photo-1565151304493-76287020f373?auto=format&fit=crop&w=900&q=82" alt="戸建て外観の住宅ミニチュア事例">
-                            </figure>
-                            <div class="case-card-body">
-                                <span class="case-number">Case 01</span>
-                                <h3>戸建て外観ミニチュア</h3>
-                                <p>正面外観の印象を中心に、屋根形状、窓配置、外壁の色味を飾りやすいサイズに整理。</p>
-                            </div>
-                        </article>
+                    <div class="case-gallery">
+                        <figure class="case-gallery-item reveal-target">
+                            <img src="images/miniature/5tubo.png" alt="住宅ミニチュア制作事例 5坪モデル">
+                        </figure>
+                        <figure class="case-gallery-item reveal-target">
+                            <img src="images/miniature/ks-sama.png" alt="住宅ミニチュア制作事例 KS様モデル">
+                        </figure>
+                        <figure class="case-gallery-item reveal-target">
+                            <img src="images/miniature/５tsubo-tree.png" alt="住宅ミニチュア制作事例 5坪ツリー付きモデル">
+                        </figure>
+                    </div>
 
-                        <article class="wovi-card case-card reveal-target">
-                            <figure>
-                                <img src="https://images.unsplash.com/photo-1653749576886-059215c7a777?auto=format&fit=crop&w=900&q=82" alt="新築記念向け住宅ミニチュア事例">
-                            </figure>
-                            <div class="case-card-body">
-                                <span class="case-number">Case 02</span>
-                                <h3>新築記念ギフト</h3>
-                                <p>引き渡し時に渡せる記念品として、台座付きで仕上げる構成。施主様向けの贈り物に。</p>
-                            </div>
-                        </article>
-
-                        <article class="wovi-card case-card reveal-target">
-                            <figure>
-                                <img src="https://images.unsplash.com/photo-1761494347901-1bac2cf34442?auto=format&fit=crop&w=900&q=82" alt="展示用の住宅ミニチュア事例">
-                            </figure>
-                            <div class="case-card-body">
-                                <span class="case-number">Case 03</span>
-                                <h3>展示・商談用モデル</h3>
-                                <p>イベントや店頭で説明しやすいよう、視認性と耐久性を意識した模型として制作。</p>
-                            </div>
-                        </article>
+                    <div class="case-gallery-actions reveal-target">
+                        <a href="miniature-gallery.html" class="btn-creative">もっと見る</a>
                     </div>
                 </div>
             </section>
