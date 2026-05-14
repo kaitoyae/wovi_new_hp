@@ -4,27 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>会社概要 - Wovi</title>
+    <title>会社概要 | 株式会社Wovi</title>
+    <meta name="description" content="株式会社Woviの会社概要、所在地、代表者、設立日、事業目的などの企業情報を掲載しています。">
+    <link rel="canonical" href="https://wovi.net/company.html">
     <link rel="icon" type="image/png" href="images/kurumi_icon_black.png">
-    <meta property="og:image" content="https://wovi.net/images/logowhite.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wovi.net/company.html">
+    <meta property="og:image" content="https://wovi.net/images/kurumi_icon_black.png">
     <meta property="og:image:type" content="image/png">
-    <meta property="og:title" content="会社概要 - Wovi">
-    <meta property="og:description" content="株式会社Woviの企業情報">
+    <meta property="og:title" content="会社概要 | 株式会社Wovi">
+    <meta property="og:description" content="株式会社Woviの会社概要、所在地、代表者、設立日、事業目的などの企業情報を掲載しています。">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:image" content="https://wovi.net/images/logowhite.png">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://corsproxy.io https://note.com https://api.rss2json.com; worker-src 'self' blob:; form-action 'self'; upgrade-insecure-requests">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="components/navigation.js"></script>
-    <script src="components/motion.js"></script>
-    <script src="components/header.js"></script>
-    <script src="components/footer.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="twitter:title" content="会社概要 | 株式会社Wovi">
+    <meta name="twitter:description" content="株式会社Woviの会社概要、所在地、代表者、設立日、事業目的などの企業情報を掲載しています。">
+    <meta name="twitter:image" content="https://wovi.net/images/kurumi_icon_black.png">
+    <script src="components/navigation.js" defer></script>
+    <script src="components/motion.js" defer></script>
+    <script src="components/header.js" defer></script>
+    <script src="components/footer.js" defer></script>
+    <script src="components/structured-data.js" defer></script>
+    <script src="components/site-init.js" defer></script>
+    <link rel="stylesheet" href="styles/tailwind.css">
     <link rel="stylesheet" href="styles/global.css">
 </head>
 
-<body>
+<body data-page="company">
     <div class="bg-noise" aria-hidden="true"></div>
 
     <div class="site-shell">
@@ -35,10 +39,10 @@
                 <div class="content-container">
                     <div class="section-heading reveal-target">
                         <p class="section-label">Purpose</p>
-                        <h2 class="section-title purpose-title">
+                        <h1 class="section-title purpose-title">
                             <span class="purpose-title-line">「暮らしをつくる喜び」を</span>
                             <span class="purpose-title-line">すべての人に。</span>
-                        </h2>
+                        </h1>
                         <p class="section-lead">
                             Woviは、3Dプリンターと木造技術を掛け合わせ、<br>
                             建築費高騰と深刻な人材不足という時代の課題に向き合います。<br>
@@ -111,8 +115,8 @@
                     </div>
 
                     <div class="reveal-target" style="margin-top:1.8rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
-                        <a href="index.html" class="btn-creative">トップページへ</a>
-                        <a href="/policy" class="btn-creative">プライバシーポリシー</a>
+                        <a href="/" class="btn-creative">トップページへ</a>
+                        <a href="/policy/" class="btn-creative">プライバシーポリシー</a>
                     </div>
                 </div>
             </section>
@@ -121,28 +125,6 @@
         <div id="footer-placeholder"></div>
     </div>
 
-    <script>
-        function mountLayout() {
-            const headerPlaceholder = document.getElementById('header-placeholder');
-            const footerPlaceholder = document.getElementById('footer-placeholder');
-
-            if (headerPlaceholder) {
-                headerPlaceholder.innerHTML = createHeader();
-                initializeHeaderEvents();
-            }
-            if (footerPlaceholder) {
-                footerPlaceholder.innerHTML = createFooter();
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', function () {
-            mountLayout();
-
-            if (window.WOVI_MOTION && typeof window.WOVI_MOTION.init === 'function') {
-                window.WOVI_MOTION.init();
-            }
-        });
-    </script>
 </body>
 
 </html>

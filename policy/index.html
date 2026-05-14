@@ -5,31 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>プライバシーポリシー | 株式会社Wovi</title>
-    <link rel="icon" type="image/png" href="/images/logowhite.png">
-    <meta property="og:image" content="https://wovi.net/images/logowhite.png">
+    <meta name="description" content="株式会社Woviのプライバシーポリシーです。個人情報の取得、利用目的、第三者提供、安全管理措置、お問い合わせ窓口について掲載しています。">
+    <link rel="canonical" href="https://wovi.net/policy/">
+    <link rel="icon" type="image/png" href="/images/kurumi_icon_black.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wovi.net/policy/">
+    <meta property="og:image" content="https://wovi.net/images/kurumi_icon_black.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:title" content="プライバシーポリシー | Wovi">
-    <meta property="og:description" content="株式会社Woviのプライバシーポリシーです。">
+    <meta property="og:description" content="株式会社Woviのプライバシーポリシーです。個人情報の取得、利用目的、第三者提供、安全管理措置、お問い合わせ窓口について掲載しています。">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:image" content="https://wovi.net/images/logowhite.png">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://corsproxy.io https://note.com https://api.rss2json.com; worker-src 'self' blob:; form-action 'self'; upgrade-insecure-requests">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="/components/navigation.js"></script>
-    <script src="/components/background.js"></script>
-    <script src="/components/header.js"></script>
-    <script src="/components/footer.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;700&display=swap"
-        rel="stylesheet">
+    <meta name="twitter:title" content="プライバシーポリシー | 株式会社Wovi">
+    <meta name="twitter:description" content="株式会社Woviのプライバシーポリシーです。個人情報の取得、利用目的、第三者提供、安全管理措置、お問い合わせ窓口について掲載しています。">
+    <meta name="twitter:image" content="https://wovi.net/images/kurumi_icon_black.png">
+    <script src="/components/navigation.js" defer></script>
+    <script src="/components/motion.js" defer></script>
+    <script src="/components/header.js" defer></script>
+    <script src="/components/footer.js" defer></script>
+    <script src="/components/structured-data.js" defer></script>
+    <script src="/components/site-init.js" defer></script>
+    <link rel="stylesheet" href="/styles/tailwind.css">
     <link rel="stylesheet" href="/styles/global.css">
 </head>
 
-<body>
-    <canvas id="three-canvas" aria-hidden="true"></canvas>
-
+<body data-page="policy">
+    <div class="bg-noise" aria-hidden="true"></div>
     <div class="content-wrapper min-h-screen flex flex-col">
         <!-- ヘッダー -->
         <div id="header-placeholder"></div>
@@ -39,8 +39,7 @@
             <div class="container mx-auto px-6 max-w-4xl">
                 <h1 class="text-3xl md:text-4xl font-bold font-jp mb-12 text-center">プライバシーポリシー</h1>
 
-                <div
-                    class="prose prose-lg max-w-none font-jp bg-white/80 backdrop-blur-md p-8 md:p-12 rounded-2xl shadow-sm">
+                <div class="policy-document max-w-none font-jp bg-white/80 backdrop-blur-md p-8 md:p-12 rounded-2xl shadow-sm">
                     <p>株式会社Wovi（以下「当社」といいます。）は、製品・サービスの提供、イベントの実施その他事業活動の実施に当たって取得する個人情報について、以下に記載するポリシーに基づいて適正に取り扱います。本ポリシーにおける「個人情報」、「個人データ」および「保有個人データ」は、本ポリシーに別段の定めがない限り、個人情報の保護に関する法律（平成15年法律第57号。以下「個人情報保護法」といいます。）において使用する用語の例によります。
                     </p>
 
@@ -201,34 +200,6 @@
         <div id="footer-placeholder"></div>
     </div>
 
-    <script>
-        function mountLayout() {
-            const headerPlaceholder = document.getElementById('header-placeholder');
-            const footerPlaceholder = document.getElementById('footer-placeholder');
-
-            if (headerPlaceholder) {
-                headerPlaceholder.innerHTML = createHeader();
-                initializeHeaderEvents();
-            }
-            if (footerPlaceholder) {
-                footerPlaceholder.innerHTML = createFooter();
-            }
-        }
-
-        function initBackgroundLayer() {
-            if (typeof initBackground !== 'function') return;
-            try {
-                initBackground('three-canvas');
-            } catch (error) {
-                console.warn('背景アニメーションの初期化に失敗しました:', error);
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', function () {
-            mountLayout();
-            initBackgroundLayer();
-        });
-    </script>
 </body>
 
 </html>

@@ -25,8 +25,8 @@
         return `
             <header class="site-header">
                 <div class="site-header-inner">
-                    <a href="/index.html" class="site-logo-link" aria-label="Woviトップページへ">
-                        <img src="/images/kurumi_icon.png" alt="Wovi Logo">
+                    <a href="/" class="site-logo-link" aria-label="Woviトップページへ">
+                        <img src="/images/kurumi_icon-96.webp" alt="Wovi Logo" width="96" height="96" decoding="async">
                         <span class="site-logo-wordmark">WOVI</span>
                     </a>
 

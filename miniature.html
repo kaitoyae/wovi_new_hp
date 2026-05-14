@@ -6,22 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>住宅ミニチュア製造 - Wovi</title>
     <meta name="description" content="写真や図面から、思い出の住まいを手元に置ける住宅ミニチュアへ。4,980円から制作できるWoviの住宅ミニチュア製造サービス。">
+    <link rel="canonical" href="https://wovi.net/miniature.html">
     <link rel="icon" type="image/png" href="images/kurumi_icon_black.png">
-    <meta property="og:image" content="https://wovi.net/images/logowhite.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wovi.net/miniature.html">
+    <meta property="og:image" content="https://wovi.net/images/kurumi_icon_black.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:title" content="住宅ミニチュア製造 - Wovi">
     <meta property="og:description" content="写真や図面から、思い出の住まいを手元に置ける住宅ミニチュアへ。4,980円から制作できます。">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:image" content="https://wovi.net/images/logowhite.png">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://corsproxy.io https://note.com https://api.rss2json.com; worker-src 'self' blob:; form-action 'self'; upgrade-insecure-requests">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="components/navigation.js"></script>
-    <script src="components/motion.js"></script>
-    <script src="components/header.js"></script>
-    <script src="components/footer.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="twitter:title" content="住宅ミニチュア製造 - Wovi">
+    <meta name="twitter:description" content="写真や図面から、思い出の住まいを手元に置ける住宅ミニチュアへ。4,980円から制作できます。">
+    <meta name="twitter:image" content="https://wovi.net/images/kurumi_icon_black.png">
+    <script src="components/navigation.js" defer></script>
+    <script src="components/motion.js" defer></script>
+    <script src="components/header.js" defer></script>
+    <script src="components/footer.js" defer></script>
+    <script src="components/structured-data.js" defer></script>
+    <script src="components/site-init.js" defer></script>
+    <link rel="stylesheet" href="styles/tailwind.css">
     <link rel="stylesheet" href="styles/global.css">
     <style>
         .miniature-hero {
@@ -508,7 +511,7 @@
     </style>
 </head>
 
-<body>
+<body data-page="miniature">
     <div class="bg-noise" aria-hidden="true"></div>
 
     <div class="site-shell">
@@ -541,7 +544,7 @@
                     <div class="miniature-visual hero-reveal" aria-label="住宅ミニチュアのイメージ">
                         <div class="miniature-photo-main clip-reveal">
                             <img
-                                src="images/miniature/5tsubo-tree-a.png"
+                                src="images/miniature/5tsubo-tree-a.webp"
                                 alt="ツリー付き住宅ミニチュアの制作事例"
                                 width="1254"
                                 height="1254"
@@ -554,7 +557,7 @@
                         </div>
                         <div class="miniature-photo-sub reveal-target">
                             <img
-                                src="images/miniature/ks-sama.png"
+                                src="images/miniature/ks-sama.webp"
                                 alt="グレーの住宅ミニチュア制作事例"
                                 width="1024"
                                 height="1024"
@@ -577,13 +580,31 @@
 
                     <div class="case-gallery">
                         <figure class="case-gallery-item reveal-target">
-                            <img src="images/miniature/5tsubo-a.png" alt="住宅ミニチュア制作事例 5坪モデル">
+                            <img
+                                src="images/miniature/5tsubo-a.webp"
+                                alt="住宅ミニチュア制作事例 5坪モデル"
+                                width="1254"
+                                height="1254"
+                                loading="lazy"
+                                decoding="async">
                         </figure>
                         <figure class="case-gallery-item reveal-target">
-                            <img src="images/miniature/ks-sama.png" alt="住宅ミニチュア制作事例 KS様モデル">
+                            <img
+                                src="images/miniature/ks-sama.webp"
+                                alt="住宅ミニチュア制作事例 KS様モデル"
+                                width="1024"
+                                height="1024"
+                                loading="lazy"
+                                decoding="async">
                         </figure>
                         <figure class="case-gallery-item reveal-target">
-                            <img src="images/miniature/5tsubo-tree-a.png" alt="住宅ミニチュア制作事例 5坪ツリー付きモデル">
+                            <img
+                                src="images/miniature/5tsubo-tree-a.webp"
+                                alt="住宅ミニチュア制作事例 5坪ツリー付きモデル"
+                                width="1254"
+                                height="1254"
+                                loading="lazy"
+                                decoding="async">
                         </figure>
                     </div>
 
@@ -722,28 +743,6 @@
         <div id="footer-placeholder"></div>
     </div>
 
-    <script>
-        function mountLayout() {
-            const headerPlaceholder = document.getElementById('header-placeholder');
-            const footerPlaceholder = document.getElementById('footer-placeholder');
-
-            if (headerPlaceholder) {
-                headerPlaceholder.innerHTML = createHeader();
-                initializeHeaderEvents();
-            }
-            if (footerPlaceholder) {
-                footerPlaceholder.innerHTML = createFooter();
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', function () {
-            mountLayout();
-
-            if (window.WOVI_MOTION && typeof window.WOVI_MOTION.init === 'function') {
-                window.WOVI_MOTION.init();
-            }
-        });
-    </script>
 </body>
 
 </html>

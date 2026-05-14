@@ -15,8 +15,8 @@
     --spark-yellow: #dfc3a9;
     --off-white: #f6f4f0;
     --dark-text: #2c2825;
-    --font-body: 'Inter', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
-    --font-heading: 'Zen Kaku Gothic New', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+    --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+    --font-heading: system-ui, -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
 }
 
 * {
@@ -89,6 +89,152 @@ img {
         linear-gradient(to right, rgba(122, 83, 62, 0.08) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(122, 83, 62, 0.08) 1px, transparent 1px);
     background-size: 52px 52px;
+}
+
+.font-mincho {
+    font-family: var(--font-heading);
+}
+
+.kurumi-logo-icon {
+    filter: brightness(0) saturate(100%);
+}
+
+.kurumi-hero .text-mask:nth-of-type(2) > span {
+    transition-delay: 0.1s;
+}
+
+.kurumi-hero .hero-reveal p {
+    transition-delay: 0.3s;
+}
+
+.kurumi-hero .clip-reveal {
+    transition-delay: 0.2s;
+}
+
+.kurumi-hero > .hero-reveal:last-child {
+    transition-delay: 0.6s;
+}
+
+.kurumi-scroll-mark {
+    width: 16px;
+    height: 16px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: rotate(45deg);
+}
+
+.kurumi-measure-icon,
+.kurumi-phone-icon,
+.kurumi-layer-icon {
+    position: relative;
+    display: inline-block;
+    flex: 0 0 auto;
+}
+
+.kurumi-measure-icon {
+    width: 18px;
+    height: 18px;
+    border: 1px solid currentColor;
+}
+
+.kurumi-measure-icon::before,
+.kurumi-measure-icon::after {
+    content: "";
+    position: absolute;
+    background: currentColor;
+}
+
+.kurumi-measure-icon::before {
+    left: 4px;
+    right: 4px;
+    top: 50%;
+    height: 1px;
+}
+
+.kurumi-measure-icon::after {
+    top: 4px;
+    bottom: 4px;
+    left: 50%;
+    width: 1px;
+}
+
+.kurumi-layer-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.kurumi-layer-icon::before,
+.kurumi-layer-icon::after {
+    content: "";
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    height: 6px;
+    border: 1px solid currentColor;
+    transform: skewY(-18deg);
+}
+
+.kurumi-layer-icon::before {
+    top: 1px;
+}
+
+.kurumi-layer-icon::after {
+    bottom: 1px;
+}
+
+.kurumi-phone-icon {
+    width: 11px;
+    height: 17px;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+}
+
+.kurumi-phone-icon::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 2px;
+    width: 2px;
+    height: 2px;
+    border-radius: 9999px;
+    background: currentColor;
+    transform: translateX(-50%);
+}
+
+.kurumi-noise-layer {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.kurumi-product-image {
+    background: #e8e4db;
+    padding: clamp(2rem, 6vw, 4rem);
+}
+
+.policy-document {
+    color: var(--color-ink);
+    font-size: 1.125rem;
+    line-height: 1.75;
+}
+
+.policy-document p,
+.policy-document ul,
+.policy-document hr {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.policy-document h2,
+.policy-document h3 {
+    line-height: 1.45;
+}
+
+.policy-document ul {
+    list-style-position: outside;
+}
+
+.policy-document li {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
 }
 
 .content-wrapper,

@@ -4,28 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お知らせ - Wovi</title>
+    <title>お知らせ | 株式会社Wovi</title>
+    <meta name="description" content="株式会社Woviの活動、Kurumiのプロダクト更新、住宅ミニチュア製造、イベント情報などのお知らせを掲載しています。">
+    <link rel="canonical" href="https://wovi.net/news.html">
     <link rel="icon" type="image/png" href="images/kurumi_icon_black.png">
-    <meta property="og:image" content="https://wovi.net/images/logowhite.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wovi.net/news.html">
+    <meta property="og:image" content="https://wovi.net/images/kurumi_icon_black.png">
     <meta property="og:image:type" content="image/png">
-    <meta property="og:title" content="お知らせ - Wovi">
-    <meta property="og:description" content="Woviの最新情報をお届けします">
+    <meta property="og:title" content="お知らせ | 株式会社Wovi">
+    <meta property="og:description" content="株式会社Woviの活動、Kurumiのプロダクト更新、住宅ミニチュア製造、イベント情報などのお知らせを掲載しています。">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:image" content="https://wovi.net/images/logowhite.png">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://corsproxy.io https://note.com https://api.rss2json.com; worker-src 'self' blob:; form-action 'self'; upgrade-insecure-requests">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="components/navigation.js"></script>
-    <script src="components/motion.js"></script>
-    <script src="components/header.js"></script>
-    <script src="components/footer.js"></script>
-    <script src="components/noteFeed.js?v=20260503"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="twitter:title" content="お知らせ | 株式会社Wovi">
+    <meta name="twitter:description" content="株式会社Woviの活動、Kurumiのプロダクト更新、住宅ミニチュア製造、イベント情報などのお知らせを掲載しています。">
+    <meta name="twitter:image" content="https://wovi.net/images/kurumi_icon_black.png">
+    <script src="components/navigation.js" defer></script>
+    <script src="components/motion.js" defer></script>
+    <script src="components/header.js" defer></script>
+    <script src="components/footer.js" defer></script>
+    <script src="components/noteFeed.js?v=20260503" defer></script>
+    <script src="components/structured-data.js" defer></script>
+    <script src="components/site-init.js" defer></script>
+    <link rel="stylesheet" href="styles/tailwind.css">
     <link rel="stylesheet" href="styles/global.css">
 </head>
 
-<body>
+<body data-page="news" data-note-feed-limit="9" data-note-feed-variant="news">
     <div class="bg-noise" aria-hidden="true"></div>
 
     <div class="site-shell">
@@ -49,7 +53,8 @@
 
                     <div id="note-articles" class="news-grid news-grid--wide">
                         <div class="wovi-card" style="padding:2rem; text-align:center; grid-column:1 / -1;">
-                            <p>記事を読み込み中...</p>
+                            <p>Woviの活動、プロダクト更新、イベント情報はnoteでも公開しています。</p>
+                            <a href="https://note.com/wovi/all" target="_blank" rel="noopener noreferrer" class="note-card-link" style="margin-top:1rem;">noteの記事一覧を見る</a>
                         </div>
                     </div>
 
@@ -63,32 +68,6 @@
         <div id="footer-placeholder"></div>
     </div>
 
-    <script>
-        function mountLayout() {
-            const headerPlaceholder = document.getElementById('header-placeholder');
-            const footerPlaceholder = document.getElementById('footer-placeholder');
-
-            if (headerPlaceholder) {
-                headerPlaceholder.innerHTML = createHeader();
-                initializeHeaderEvents();
-            }
-            if (footerPlaceholder) {
-                footerPlaceholder.innerHTML = createFooter();
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', function () {
-            mountLayout();
-
-            if (window.WOVI_MOTION && typeof window.WOVI_MOTION.init === 'function') {
-                window.WOVI_MOTION.init();
-            }
-
-            if (window.NoteFeed && typeof window.NoteFeed.load === 'function') {
-                window.NoteFeed.load({ containerId: 'note-articles', limit: 9, variant: 'news' });
-            }
-        });
-    </script>
 </body>
 
 </html>
