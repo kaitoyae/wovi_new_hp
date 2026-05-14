@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>住宅ミニチュア製造 - Wovi</title>
-    <meta name="description" content="写真や図面から、思い出の住まいを手元に置ける住宅ミニチュアへ。4,990円から制作できるWoviの住宅ミニチュア製造サービス。">
+    <meta name="description" content="写真や図面から、思い出の住まいを手元に置ける住宅ミニチュアへ。4,980円から制作できるWoviの住宅ミニチュア製造サービス。">
     <link rel="icon" type="image/png" href="images/kurumi_icon_black.png">
     <meta property="og:image" content="https://wovi.net/images/logowhite.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:title" content="住宅ミニチュア製造 - Wovi">
-    <meta property="og:description" content="写真や図面から、思い出の住まいを手元に置ける住宅ミニチュアへ。4,990円から制作できます。">
+    <meta property="og:description" content="写真や図面から、思い出の住まいを手元に置ける住宅ミニチュアへ。4,980円から制作できます。">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image" content="https://wovi.net/images/logowhite.png">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://corsproxy.io https://note.com https://api.rss2json.com; worker-src 'self' blob:; form-action 'self'; upgrade-insecure-requests">
@@ -117,13 +117,13 @@
         }
 
         .miniature-photo-main {
-            inset: 0 0 7% 8%;
+            inset: 0 8% 7% 0;
         }
 
         .miniature-photo-sub {
             width: min(46%, 280px);
             aspect-ratio: 4 / 5;
-            left: 0;
+            right: 0;
             bottom: 0;
             box-shadow: var(--shadow-soft);
         }
@@ -145,7 +145,7 @@
 
         .miniature-visual-note {
             position: absolute;
-            right: clamp(1rem, 3vw, 2rem);
+            left: clamp(1rem, 3vw, 2rem);
             bottom: clamp(1rem, 3vw, 2rem);
             z-index: 2;
             max-width: 15rem;
@@ -450,8 +450,8 @@
                             写真や図面から外観の特徴を読み取り、飾れる住宅ミニチュアとして制作します。
                             新築祝い、引き渡し記念、商談用サンプルまで、手に取れるサイズで形にします。
                         </p>
-                        <div class="miniature-price" aria-label="価格 4,990円から">
-                            <strong>4,990円</strong>
+                        <div class="miniature-price" aria-label="価格 4,980円から">
+                            <strong>4,980円</strong>
                             <span>〜</span>
                         </div>
                         <div class="miniature-cta-row">
@@ -462,43 +462,27 @@
 
                     <div class="miniature-visual hero-reveal" aria-label="住宅ミニチュアのイメージ">
                         <div class="miniature-photo-main clip-reveal">
-                            <img src="https://images.unsplash.com/photo-1565151304493-76287020f373?auto=format&fit=crop&w=1400&q=84" alt="住宅ミニチュアの外観模型">
+                            <img
+                                src="images/miniature/5tsubo-tree-a.png"
+                                alt="ツリー付き住宅ミニチュアの制作事例"
+                                width="1254"
+                                height="1254"
+                                fetchpriority="high"
+                                decoding="async">
                             <div class="miniature-visual-note">
-                                <strong>From Photo</strong>
-                                <p>外壁、屋根、窓まわりなど、印象に残る部分を小さなスケールで整理します。</p>
+                                <strong>Likeshome Presents</strong>
+                                <p>現役工務店スタッフが<p>家のミニチュアを制作します</p>
                             </div>
                         </div>
                         <div class="miniature-photo-sub reveal-target">
-                            <img src="https://images.unsplash.com/photo-1653749576886-059215c7a777?auto=format&fit=crop&w=700&q=80" alt="木製の建築ミニチュア模型">
+                            <img
+                                src="images/miniature/ks-sama.png"
+                                alt="グレーの住宅ミニチュア制作事例"
+                                width="1024"
+                                height="1024"
+                                loading="lazy"
+                                decoding="async">
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section-block">
-                <div class="content-container">
-                    <div class="section-heading reveal-target">
-                        <p class="section-label">For whom</p>
-                        <h2 class="section-title">家を贈る、家を残す、家を伝える。</h2>
-                        <p class="section-lead">
-                            住宅ミニチュアは、単なる模型ではなく、住まいの記憶や設計意図を伝えるための小さなメディアです。
-                            個人の記念品から、工務店・設計事務所の商談ツールまで対応します。
-                        </p>
-                    </div>
-
-                    <div class="feature-grid">
-                        <article class="wovi-card feature-card reveal-target">
-                            <h3>新築・引き渡し記念に</h3>
-                            <p>完成した住まいを、写真と一緒に飾れる小さな立体物として残せます。</p>
-                        </article>
-                        <article class="wovi-card feature-card reveal-target">
-                            <h3>商談・展示サンプルに</h3>
-                            <p>平面図やパースだけでは伝わりにくい外観の特徴を、手に取れる形で補えます。</p>
-                        </article>
-                        <article class="wovi-card feature-card reveal-target">
-                            <h3>思い出の家の保存に</h3>
-                            <p>建て替えや引っ越しの前に、写真から住まいの雰囲気を小さく再構成できます。</p>
-                        </article>
                     </div>
                 </div>
             </section>
@@ -527,6 +511,34 @@
 
                     <div class="case-gallery-actions reveal-target">
                         <a href="miniature-gallery.html" class="btn-creative">もっと見る</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-block">
+                <div class="content-container">
+                    <div class="section-heading reveal-target">
+                        <p class="section-label">For whom</p>
+                        <h2 class="section-title">家を贈る、家を残す、家を伝える。</h2>
+                        <p class="section-lead">
+                            住宅ミニチュアは、単なる模型ではなく、住まいの記憶や設計意図を伝えるための小さなメディアです。
+                            個人の記念品から、工務店・設計事務所の商談ツールまで対応します。
+                        </p>
+                    </div>
+
+                    <div class="feature-grid">
+                        <article class="wovi-card feature-card reveal-target">
+                            <h3>新築・引き渡し記念に</h3>
+                            <p>完成した住まいを、写真と一緒に飾れる小さな立体物として残せます。</p>
+                        </article>
+                        <article class="wovi-card feature-card reveal-target">
+                            <h3>商談・展示サンプルに</h3>
+                            <p>平面図やパースだけでは伝わりにくい外観の特徴を、手に取れる形で補えます。</p>
+                        </article>
+                        <article class="wovi-card feature-card reveal-target">
+                            <h3>思い出の家の保存に</h3>
+                            <p>建て替えや引っ越しの前に、写真から住まいの雰囲気を小さく再構成できます。</p>
+                        </article>
                     </div>
                 </div>
             </section>
@@ -608,7 +620,7 @@
                             <h2>まずは小さく、試せる価格から。</h2>
                         </div>
                         <div>
-                            <strong>4,990円〜</strong>
+                            <strong>4,980円〜</strong>
                             <p class="price-note">
                                 価格はサイズ、再現範囲、塗装、台座、納期によって変動します。
                                 写真のみのご相談でも、制作可能な範囲を確認してご案内します。

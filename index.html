@@ -33,26 +33,38 @@
 
         <main class="page-main">
             <section class="hero-section hero-section--visual">
-                <img
-                    class="hero-background-image"
-                    src="images/hero/kurumi-hero-1280.jpg"
-                    srcset="images/hero/kurumi-hero-768.jpg 768w, images/hero/kurumi-hero-1280.jpg 1280w, images/hero/kurumi-hero-1536.jpg 1536w"
-                    sizes="100vw"
-                    alt=""
-                    aria-hidden="true"
-                    width="1536"
-                    height="1024"
-                    fetchpriority="high"
-                    decoding="async">
+                <div class="hero-background-slider" aria-hidden="true">
+                    <img
+                        class="hero-background-image hero-background-slide"
+                        src="images/hero/kurumi-hero-1280.jpg"
+                        srcset="images/hero/kurumi-hero-768.jpg 768w, images/hero/kurumi-hero-1280.jpg 1280w, images/hero/kurumi-hero-1536.jpg 1536w"
+                        sizes="100vw"
+                        alt=""
+                        width="1536"
+                        height="1024"
+                        fetchpriority="high"
+                        decoding="async">
+                    <img
+                        class="hero-background-image hero-background-slide"
+                        src="images/hero/miniature-hero-720.jpg"
+                        srcset="images/hero/miniature-hero-360.jpg 360w, images/hero/miniature-hero-720.jpg 720w"
+                        sizes="100vw"
+                        alt=""
+                        width="720"
+                        height="480"
+                        loading="lazy"
+                        fetchpriority="low"
+                        decoding="async">
+                </div>
                 <div class="hero-visual-inner">
                     <div class="hero-content hero-content--visual hero-reveal">
                         <p class="hero-kicker">Wovi / Kurumi</p>
                         <h1 class="hero-title">
                             <span class="hero-line hero-line--desktop">暮らしをつくる喜びを、</span>
-                            <span class="hero-line hero-line--desktop">もっと身近に。</span>
+                            <span class="hero-line hero-line--desktop">すべての人に。</span>
                             <span class="hero-line hero-line--mobile">暮らしをつくる</span>
                             <span class="hero-line hero-line--mobile">喜びを、</span>
-                            <span class="hero-line hero-line--mobile">もっと身近に。</span>
+                            <span class="hero-line hero-line--mobile">すべての人に。</span>
                         </h1>
                         <p class="hero-subtitle">
                             <span class="hero-copy-line">Woviは埼玉の工務店発スタートアップです。</span>
@@ -64,19 +76,6 @@
                             <a href="#contact" class="hero-link">お問い合わせ</a>
                         </div>
                     </div>
-
-                    <figure class="hero-miniature-frame hero-reveal">
-                        <img
-                            src="images/hero/miniature-hero-360.jpg"
-                            srcset="images/hero/miniature-hero-360.jpg 360w, images/hero/miniature-hero-720.jpg 720w"
-                            sizes="(max-width: 720px) 58vw, 360px"
-                            alt="Woviが制作する住宅ミニチュアの作例"
-                            width="1536"
-                            height="1024"
-                            loading="lazy"
-                            fetchpriority="low"
-                            decoding="async">
-                    </figure>
                 </div>
             </section>
 
@@ -161,7 +160,15 @@
 
                         <article class="wovi-card service-card reveal-target">
                             <div class="service-card-media">
-                                <img src="https://images.unsplash.com/photo-1565151304493-76287020f373?auto=format&fit=crop&w=1200&q=82" alt="住宅ミニチュア製造のサンプルイメージ" width="1200" height="900">
+                                <img
+                                    src="images/hero/miniature-hero-720.jpg"
+                                    srcset="images/hero/miniature-hero-360.jpg 360w, images/hero/miniature-hero-720.jpg 720w"
+                                    sizes="(max-width: 1024px) calc(100vw - 2.8rem), 36vw"
+                                    alt="住宅ミニチュア製造のサンプルイメージ"
+                                    width="720"
+                                    height="480"
+                                    loading="lazy"
+                                    decoding="async">
                             </div>
                             <div>
                                 <span class="service-tag">Miniature</span>
@@ -169,10 +176,10 @@
                                 <p class="service-copy">
                                     思い出の住まいや建築計画を、手元に置ける小さなかたちへ。
                                     写真や図面をもとに外観の特徴を整理し、記念品・商談用・展示用に使える
-                                    住宅ミニチュアを4,990円から制作します。
+                                    住宅ミニチュアを4,980円から制作します。
                                 </p>
                                 <div class="chips">
-                                    <span class="chip">4,990円〜</span>
+                                    <span class="chip">4,980円〜</span>
                                     <span class="chip">写真から相談可</span>
                                     <span class="chip">記念品・展示</span>
                                 </div>

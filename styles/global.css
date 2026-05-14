@@ -311,6 +311,38 @@ img {
     transform: scale(1.01);
 }
 
+.hero-background-slider {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-background-slide {
+    opacity: 0;
+    animation: heroSlideFade 10s ease-in-out infinite;
+}
+
+.hero-background-slide:nth-child(2) {
+    animation-delay: 5s;
+}
+
+@keyframes heroSlideFade {
+    0%,
+    45% {
+        opacity: 1;
+    }
+
+    50%,
+    95% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 .hero-visual-inner {
     position: relative;
     z-index: 3;
