@@ -16,7 +16,7 @@
                 <div class="site-footer-grid">
                     <div>
                         <div class="footer-logo">
-                            <img src="/images/kurumi_icon.png" alt="Wovi Logo">
+                            <img src="/images/kurumi_icon-96.webp" alt="Wovi Logo" width="96" height="96" loading="lazy" decoding="async">
                             <span>Wovi</span>
                         </div>
                         <p style="margin-top:0.95rem; color:var(--color-muted); line-height:1.9;">
