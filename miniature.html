@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>住宅ミニチュア製造 - Wovi</title>
+    <meta name="description" content="写真や図面から、思い出の住まいを手元に置ける住宅ミニチュアへ。4,980円から制作できるWoviの住宅ミニチュア製造サービス。">
+    <link rel="icon" type="image/png" href="images/kurumi_icon_black.png">
+    <meta property="og:image" content="https://wovi.net/images/logowhite.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:title" content="住宅ミニチュア製造 - Wovi">
+    <meta property="og:description" content="写真や図面から、思い出の住まいを手元に置ける住宅ミニチュアへ。4,980円から制作できます。">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="https://wovi.net/images/logowhite.png">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://corsproxy.io https://note.com https://api.rss2json.com; worker-src 'self' blob:; form-action 'self'; upgrade-insecure-requests">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="components/navigation.js"></script>
+    <script src="components/motion.js"></script>
+    <script src="components/header.js"></script>
+    <script src="components/footer.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/global.css">
+    <style>
+        .miniature-hero {
+            min-height: calc(92svh - 104px);
+            padding: clamp(3.8rem, 9vw, 6.8rem) 0 clamp(3.2rem, 8vw, 5.2rem);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .miniature-hero .content-container {
+            width: min(1240px, calc(100% - 3rem));
+        }
+
+        .miniature-hero-grid {
+            display: grid;
+            grid-template-columns: minmax(620px, 0.95fr) minmax(0, 1fr);
+            gap: clamp(2rem, 5vw, 4.5rem);
+            align-items: center;
+        }
+
+        .miniature-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: var(--color-kurumi);
+            font-size: 0.68rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+        }
+
+        .miniature-kicker::before {
+            content: "";
+            width: 3.2rem;
+            height: 1px;
+            background: rgba(122, 83, 62, 0.46);
+        }
+
+        .miniature-title {
+            margin: 1.1rem 0 0;
+            font-family: var(--font-heading);
+            font-size: clamp(2.35rem, 6.2vw, 4.65rem);
+            line-height: 1.12;
+            letter-spacing: 0.04em;
+            font-weight: 400;
+            text-wrap: balance;
+            overflow-wrap: anywhere;
+        }
+
+        .miniature-title-line {
+            display: block;
+            max-width: 100%;
+        }
+
+        .miniature-hero-copy {
+            margin-top: 1.25rem;
+            max-width: 39rem;
+            color: var(--color-muted-strong);
+            line-height: 1.92;
+            font-size: clamp(0.96rem, 1.6vw, 1.08rem);
+            overflow-wrap: anywhere;
+        }
+
+        .miniature-price {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-top: 1.6rem;
+            color: var(--color-ink);
+        }
+
+        .miniature-price strong {
+            font-family: var(--font-heading);
+            font-size: clamp(2.15rem, 6vw, 4.2rem);
+            font-weight: 400;
+            letter-spacing: 0.04em;
+        }
+
+        .miniature-price span {
+            color: var(--color-muted);
+            letter-spacing: 0.08em;
+        }
+
+        .miniature-visual {
+            position: relative;
+            width: 100%;
+            min-width: 0;
+            min-height: clamp(420px, 55vw, 620px);
+        }
+
+        .miniature-photo-main,
+        .miniature-photo-sub {
+            position: absolute;
+            overflow: hidden;
+            background: var(--color-kinari-deep);
+            border: 1px solid rgba(122, 83, 62, 0.2);
+            box-shadow: var(--shadow-hard);
+        }
+
+        .miniature-photo-main {
+            inset: 0 8% 7% 0;
+        }
+
+        .miniature-photo-sub {
+            width: min(46%, 280px);
+            aspect-ratio: 4 / 5;
+            right: 0;
+            bottom: 0;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .miniature-photo-main img,
+        .miniature-photo-sub img,
+        .case-gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .miniature-photo-main::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 45%, rgba(44, 40, 37, 0.42));
+        }
+
+        .miniature-visual-note {
+            position: absolute;
+            left: clamp(1rem, 3vw, 2rem);
+            bottom: clamp(1rem, 3vw, 2rem);
+            z-index: 2;
+            max-width: 15rem;
+            padding: 1rem;
+            border: 1px solid rgba(246, 244, 240, 0.4);
+            background: rgba(44, 40, 37, 0.78);
+            color: var(--color-kinari);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .miniature-visual-note p {
+            margin: 0;
+            font-size: 0.82rem;
+            line-height: 1.76;
+            color: rgba(246, 244, 240, 0.76);
+        }
+
+        .miniature-visual-note strong {
+            display: block;
+            margin-bottom: 0.28rem;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+        }
+
+        .miniature-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1px;
+            margin-top: 2rem;
+            background: var(--color-line);
+            border: 1px solid var(--color-line);
+        }
+
+        .miniature-meta-item {
+            background: rgba(246, 244, 240, 0.82);
+            padding: 1.1rem;
+        }
+
+        .miniature-meta-item span {
+            display: block;
+            color: var(--color-muted);
+            font-size: 0.64rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .miniature-meta-item strong {
+            display: block;
+            margin-top: 0.42rem;
+            font-weight: 400;
+            line-height: 1.55;
+        }
+
+        .case-gallery,
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.15rem;
+        }
+
+        .case-gallery-item {
+            aspect-ratio: 1;
+            margin: 0;
+            overflow: hidden;
+            background: var(--color-kinari-deep);
+            border: 1px solid rgba(122, 83, 62, 0.18);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .case-gallery-item img {
+            display: block;
+            transition: transform 0.45s ease;
+        }
+
+        .case-gallery-item:hover img {
+            transform: scale(1.035);
+        }
+
+        .case-gallery-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.8rem;
+        }
+
+        .youtube-showcase {
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+            gap: clamp(1.4rem, 4vw, 3rem);
+            align-items: center;
+        }
+
+        .youtube-showcase .section-title {
+            max-width: 13em;
+            font-size: clamp(1.65rem, 3.2vw, 2.65rem);
+            line-height: 1.42;
+            letter-spacing: 0.04em;
+            text-wrap: normal;
+        }
+
+        .miniature-heading-line {
+            display: block;
+        }
+
+        .youtube-frame {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            border: 1px solid rgba(122, 83, 62, 0.18);
+            background: var(--color-kinari-deep);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .youtube-frame iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .feature-card,
+        .flow-item {
+            padding: clamp(1.1rem, 2.6vw, 1.5rem);
+        }
+
+        .feature-card h3,
+        .flow-item h3 {
+            margin: 0;
+            font-family: var(--font-heading);
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            font-size: 1.14rem;
+        }
+
+        .feature-card p,
+        .flow-item p,
+        .price-note {
+            margin: 0.72rem 0 0;
+            color: var(--color-muted);
+            line-height: 1.78;
+            font-size: 0.94rem;
+        }
+
+        .flow-number {
+            display: block;
+            margin-bottom: 0.72rem;
+            color: var(--color-kurumi);
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .flow-list {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1px;
+            background: var(--color-line);
+            border: 1px solid var(--color-line);
+        }
+
+        .flow-item {
+            background: rgba(246, 244, 240, 0.86);
+        }
+
+        .price-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: clamp(1.4rem, 4vw, 3rem);
+            align-items: center;
+            padding: clamp(1.5rem, 4vw, 2.6rem);
+            background: var(--color-card-dark);
+            color: var(--color-kinari);
+            border: 1px solid rgba(246, 244, 240, 0.18);
+        }
+
+        .price-panel .section-label {
+            color: rgba(246, 244, 240, 0.62);
+        }
+
+        .price-panel h2 {
+            margin: 0.9rem 0 0;
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 3.2vw, 2.6rem);
+            line-height: 1.42;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+        }
+
+        .price-panel strong {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: clamp(2.35rem, 4.6vw, 3.9rem);
+            line-height: 1.08;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+        }
+
+        .price-panel .price-note {
+            color: rgba(246, 244, 240, 0.72);
+        }
+
+        .miniature-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.6rem;
+        }
+
+        .miniature-hero-grid > *,
+        .youtube-showcase > *,
+        .price-panel > * {
+            min-width: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .miniature-hero {
+                min-height: auto;
+                padding-top: clamp(3rem, 8vw, 4.6rem);
+            }
+
+            .miniature-hero .content-container {
+                width: min(1120px, calc(100% - 2.4rem));
+            }
+
+            .miniature-hero-grid,
+            .youtube-showcase,
+            .price-panel {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .miniature-visual {
+                min-height: clamp(360px, 72vw, 560px);
+            }
+
+            .youtube-showcase .section-title,
+            .price-panel h2 {
+                max-width: 100%;
+                font-size: clamp(1.7rem, 5vw, 2.35rem);
+            }
+
+            .price-panel strong {
+                font-size: clamp(2.2rem, 8vw, 3.25rem);
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .flow-list {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .miniature-title-line {
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .miniature-hero .content-container {
+                width: min(1120px, calc(100% - 1.4rem));
+            }
+
+            .miniature-title {
+                font-size: clamp(2rem, 8.8vw, 2.85rem);
+                line-height: 1.18;
+                letter-spacing: 0.02em;
+            }
+
+            .miniature-meta-grid,
+            .feature-grid,
+            .flow-list {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .case-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.75rem;
+            }
+
+            .miniature-photo-main {
+                inset: 0 0 12% 0;
+            }
+
+            .miniature-photo-sub {
+                width: min(42%, 150px);
+            }
+
+            .miniature-visual-note {
+                max-width: min(13rem, calc(100% - 2rem));
+                padding: 0.86rem;
+            }
+
+            .youtube-showcase .section-title,
+            .price-panel h2 {
+                font-size: clamp(1.45rem, 7vw, 1.9rem);
+                line-height: 1.5;
+                letter-spacing: 0.02em;
+            }
+
+            .price-panel {
+                padding: 1.25rem;
+            }
+
+            .price-panel strong {
+                font-size: clamp(2rem, 10vw, 2.7rem);
+            }
+        }
+
+        @media (max-width: 420px) {
+            .miniature-kicker {
+                letter-spacing: 0.18em;
+            }
+
+            .miniature-kicker::before {
+                width: 2rem;
+            }
+
+            .miniature-photo-sub {
+                display: none;
+            }
+
+            .miniature-visual {
+                min-height: 330px;
+            }
+
+            .miniature-title {
+                font-size: clamp(1.9rem, 8.9vw, 2.25rem);
+            }
+
+            .miniature-hero-copy {
+                font-size: 0.9rem;
+                line-height: 1.78;
+            }
+
+            .miniature-price strong {
+                font-size: clamp(1.9rem, 10vw, 2.6rem);
+            }
+
+            .youtube-showcase .section-title,
+            .price-panel h2 {
+                font-size: clamp(1.32rem, 6.4vw, 1.62rem);
+                line-height: 1.52;
+                letter-spacing: 0.01em;
+            }
+
+            .price-panel strong {
+                font-size: clamp(1.9rem, 9vw, 2.25rem);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-noise" aria-hidden="true"></div>
+
+    <div class="site-shell">
+        <div id="header-placeholder"></div>
+
+        <main class="page-main">
+            <section class="miniature-hero architectural-grid">
+                <div class="content-container miniature-hero-grid">
+                    <div class="hero-reveal">
+                        <p class="miniature-kicker">Miniature House</p>
+                        <h1 class="miniature-title">
+                            <span class="miniature-title-line">住まいを、</span>
+                            <span class="miniature-title-line">小さな記念品に。</span>
+                        </h1>
+                        <p class="miniature-hero-copy">
+                            完成した家、これから建てる家、思い出のある家。
+                            写真や図面から外観の特徴を読み取り、飾れる住宅ミニチュアとして制作します。
+                            新築祝い、引き渡し記念、商談用サンプルまで、手に取れるサイズで形にします。
+                        </p>
+                        <div class="miniature-price" aria-label="価格 4,980円から">
+                            <strong>4,980円</strong>
+                            <span>〜</span>
+                        </div>
+                        <div class="miniature-cta-row">
+                            <a href="https://coconala.com/services/4218929" target="_blank" rel="noopener noreferrer" class="btn-creative">制作を相談する</a>
+                            <a href="#cases" class="btn-creative">制作事例を見る</a>
+                        </div>
+                    </div>
+
+                    <div class="miniature-visual hero-reveal" aria-label="住宅ミニチュアのイメージ">
+                        <div class="miniature-photo-main clip-reveal">
+                            <img
+                                src="images/miniature/5tsubo-tree-a.png"
+                                alt="ツリー付き住宅ミニチュアの制作事例"
+                                width="1254"
+                                height="1254"
+                                fetchpriority="high"
+                                decoding="async">
+                            <div class="miniature-visual-note">
+                                <strong>Likeshome Presents</strong>
+                                <p>現役工務店スタッフが家のミニチュアを制作します</p>
+                            </div>
+                        </div>
+                        <div class="miniature-photo-sub reveal-target">
+                            <img
+                                src="images/miniature/ks-sama.png"
+                                alt="グレーの住宅ミニチュア制作事例"
+                                width="1024"
+                                height="1024"
+                                loading="lazy"
+                                decoding="async">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cases" class="section-block architectural-grid">
+                <div class="content-container">
+                    <div class="section-heading reveal-target">
+                        <p class="section-label">Case studies</p>
+                        <h2 class="section-title">制作事例</h2>
+                        <p class="section-lead">
+                            実際に制作した住宅ミニチュアの写真です。外観の雰囲気やサイズ感の参考にご覧ください。
+                        </p>
+                    </div>
+
+                    <div class="case-gallery">
+                        <figure class="case-gallery-item reveal-target">
+                            <img src="images/miniature/5tsubo-a.png" alt="住宅ミニチュア制作事例 5坪モデル">
+                        </figure>
+                        <figure class="case-gallery-item reveal-target">
+                            <img src="images/miniature/ks-sama.png" alt="住宅ミニチュア制作事例 KS様モデル">
+                        </figure>
+                        <figure class="case-gallery-item reveal-target">
+                            <img src="images/miniature/5tsubo-tree-a.png" alt="住宅ミニチュア制作事例 5坪ツリー付きモデル">
+                        </figure>
+                    </div>
+
+                    <div class="case-gallery-actions reveal-target">
+                        <a href="miniature-gallery.html" class="btn-creative">もっと見る</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-block">
+                <div class="content-container">
+                    <div class="section-heading reveal-target">
+                        <p class="section-label">For whom</p>
+                        <h2 class="section-title">家を贈る、家を残す、家を伝える。</h2>
+                        <p class="section-lead">
+                            住宅ミニチュアは、単なる模型ではなく、住まいの記憶や設計意図を伝えるための小さなメディアです。
+                            個人の記念品から、工務店・設計事務所の商談ツールまで対応します。
+                        </p>
+                    </div>
+
+                    <div class="feature-grid">
+                        <article class="wovi-card feature-card reveal-target">
+                            <h3>新築・引き渡し記念に</h3>
+                            <p>完成した住まいを、写真と一緒に飾れる小さな立体物として残せます。</p>
+                        </article>
+                        <article class="wovi-card feature-card reveal-target">
+                            <h3>商談・展示サンプルに</h3>
+                            <p>平面図やパースだけでは伝わりにくい外観の特徴を、手に取れる形で補えます。</p>
+                        </article>
+                        <article class="wovi-card feature-card reveal-target">
+                            <h3>思い出の家の保存に</h3>
+                            <p>建て替えや引っ越しの前に、写真から住まいの雰囲気を小さく再構成できます。</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-block">
+                <div class="content-container youtube-showcase">
+                    <div class="section-heading reveal-target">
+                        <p class="section-label">YouTube</p>
+                        <h2 class="section-title">
+                            <span class="miniature-heading-line">YouTube チャンネル</span>
+                            <span class="miniature-heading-line">「工務店3Dプリント部」</span>
+                            <span class="miniature-heading-line">で発信中！</span>
+                        </h2>
+                        <p class="section-lead">
+                            写真だけでは伝わりにくい立体感やサイズ感を、動画で確認できます。
+                        </p>
+                    </div>
+
+                    <div class="youtube-frame reveal-target">
+                        <iframe
+                            src="https://www.youtube-nocookie.com/embed/UIh7h3Im35Y?start=1&rel=0"
+                            title="住宅ミニチュア紹介動画"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-block">
+                <div class="content-container">
+                    <div class="section-heading reveal-target">
+                        <p class="section-label">Workflow</p>
+                        <h2 class="section-title">制作の流れ</h2>
+                    </div>
+
+                    <div class="flow-list reveal-target">
+                        <article class="flow-item">
+                            <span class="flow-number">01</span>
+                            <h3>素材共有</h3>
+                            <p>写真、図面、パースなど、再現したい住まいの情報を送ってください。</p>
+                        </article>
+                        <article class="flow-item">
+                            <span class="flow-number">02</span>
+                            <h3>仕様確認</h3>
+                            <p>サイズ、色、台座、納期、用途を確認し、制作範囲を決めます。</p>
+                        </article>
+                        <article class="flow-item">
+                            <span class="flow-number">03</span>
+                            <h3>製造</h3>
+                            <p>3Dプリントや手仕上げを組み合わせ、外観の特徴を形にします。</p>
+                        </article>
+                        <article class="flow-item">
+                            <span class="flow-number">04</span>
+                            <h3>納品</h3>
+                            <p>完成後に確認し、梱包してお届けします。ギフト用途も相談可能です。</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-block architectural-grid">
+                <div class="content-container">
+                    <div class="miniature-meta-grid reveal-target">
+                        <div class="miniature-meta-item">
+                            <span>Input</span>
+                            <strong>写真・図面・パースから相談可</strong>
+                        </div>
+                        <div class="miniature-meta-item">
+                            <span>Use</span>
+                            <strong>記念品、商談、展示、プレゼント</strong>
+                        </div>
+                        <div class="miniature-meta-item">
+                            <span>Finish</span>
+                            <strong>外観再現、台座、塗装の相談可</strong>
+                        </div>
+                    </div>
+
+                    <div class="price-panel reveal-target" style="margin-top:1.4rem;">
+                        <div>
+                            <p class="section-label">Price</p>
+                            <h2>
+                                <span class="miniature-heading-line">まずは小さく、</span>
+                                <span class="miniature-heading-line">試せる価格から。</span>
+                            </h2>
+                        </div>
+                        <div>
+                            <strong>4,980円〜</strong>
+                            <p class="price-note">
+                                価格はサイズ、再現範囲、塗装、台座、納期によって変動します。
+                                写真のみのご相談でも、制作可能な範囲を確認してご案内します。
+                            </p>
+                            <div class="miniature-cta-row">
+                                <a href="https://coconala.com/services/4218929" target="_blank" rel="noopener noreferrer" class="btn-creative btn-creative--light">制作を相談する</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="footer-placeholder"></div>
+    </div>
+
+    <script>
+        function mountLayout() {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            const footerPlaceholder = document.getElementById('footer-placeholder');
+
+            if (headerPlaceholder) {
+                headerPlaceholder.innerHTML = createHeader();
+                initializeHeaderEvents();
+            }
+            if (footerPlaceholder) {
+                footerPlaceholder.innerHTML = createFooter();
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            mountLayout();
+
+            if (window.WOVI_MOTION && typeof window.WOVI_MOTION.init === 'function') {
+                window.WOVI_MOTION.init();
+            }
+        });
+    </script>
+</body>
+
+</html>
