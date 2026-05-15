@@ -66,10 +66,93 @@
             transform: scale(1.035);
         }
 
+        .operator-section {
+            padding: clamp(3.8rem, 8vw, 6.2rem) 0;
+            border-top: 1px solid rgba(122, 83, 62, 0.16);
+            background: rgba(236, 231, 222, 0.5);
+        }
+
+        .operator-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 0.96fr) minmax(0, 1fr);
+            gap: clamp(2rem, 5vw, 4rem);
+            align-items: center;
+        }
+
+        .operator-image {
+            margin: 0;
+            overflow: hidden;
+            border: 1px solid rgba(122, 83, 62, 0.18);
+            background: var(--color-kinari-deep);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .operator-image img {
+            display: block;
+            width: 100%;
+            height: clamp(260px, 36vw, 430px);
+            object-fit: cover;
+        }
+
+        .operator-copy {
+            color: var(--color-muted-strong);
+            font-size: clamp(0.96rem, 1.5vw, 1.05rem);
+            line-height: 1.9;
+        }
+
+        .operator-copy p {
+            margin: 1.25rem 0 0;
+        }
+
+        .operator-companies {
+            display: grid;
+            gap: 0.75rem;
+            margin-top: 1.8rem;
+            padding: 1.2rem 0;
+            border-top: 1px solid rgba(122, 83, 62, 0.18);
+            border-bottom: 1px solid rgba(122, 83, 62, 0.18);
+        }
+
+        .operator-company {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.45rem 1rem;
+        }
+
+        .operator-company span {
+            color: var(--color-muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .operator-company strong {
+            font-weight: 400;
+            color: var(--color-ink);
+            line-height: 1.6;
+        }
+
+        .operator-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.8rem;
+        }
+
         @media (max-width: 768px) {
             .case-gallery {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 0.75rem;
+            }
+
+            .operator-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .operator-image img {
+                height: auto;
+                aspect-ratio: 3 / 2;
             }
         }
 
@@ -143,6 +226,44 @@
                                 loading="lazy"
                                 decoding="async">
                         </figure>
+                    </div>
+                </div>
+            </section>
+
+            <section class="operator-section architectural-grid">
+                <div class="content-container">
+                    <div class="operator-panel">
+                        <figure class="operator-image reveal-target">
+                            <img
+                                src="images/likes-home-interior.jpg"
+                                alt="ライクスホームが手がけた木の住まいで過ごす家族"
+                                width="600"
+                                height="400"
+                                loading="lazy"
+                                decoding="async">
+                        </figure>
+                        <div class="operator-copy reveal-target">
+                            <p class="section-label">Company</p>
+                            <h2 class="section-title">運営会社</h2>
+                            <div class="operator-companies" aria-label="運営会社一覧">
+                                <div class="operator-company">
+                                    <span>Home Builder</span>
+                                    <strong>株式会社ライクスホーム</strong>
+                                </div>
+                                <div class="operator-company">
+                                    <span>3D / AI Partner</span>
+                                    <strong>株式会社Wovi</strong>
+                                </div>
+                            </div>
+                            <p>
+                                ライクスホームは、埼玉県川口市を拠点に自然素材の注文住宅を手がける工務店です。
+                                株式会社Woviはライクスホームのスタッフである八重樫海斗が創業し、
+                                建築業界への3Dプリンター導入とAI活用を支援しています。
+                            </p>
+                            <div class="operator-actions">
+                                <a href="https://likes-h.net/" class="btn-creative" target="_blank" rel="noopener noreferrer">ライクスホームのホームページへ</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
